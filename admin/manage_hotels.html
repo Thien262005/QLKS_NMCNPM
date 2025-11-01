@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Quản lý khách sạn - やばい</title>
+	<link rel="stylesheet" href="css/admin.css">
+	<link rel="stylesheet" href="css/modal_hotel.css">
+	<link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+</head>
+<body>
+	<!-- header -->
+	<header class="header">
+		<div class="header__content">
+			<a href="index.html" class="header__logo">
+				<img src="img/logo.png" alt="やばい Logo">
+			</a>
+			<button class="header__btn" type="button" onclick="toggleSidebar()">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+		</div>
+	</header>
+
+	<!-- sidebar -->
+	<div class="sidebar" id="sidebar">
+		<a href="index.html" class="header__logo">
+			<img src="img/logo.png" alt="やばい Logo" style="padding-left: 20px;">
+		</a>
+
+		<div class="sidebar__user">
+			<div class="sidebar__user-img">
+				<img src="img/user.svg" alt="User Avatar">
+			</div>
+			<div class="sidebar__user-info">
+				<span class="sidebar__user-name">Admin</span>
+				<span class="sidebar__user-email">admin@yabai.com</span>
+			</div>
+			<button class="sidebar__user-btn" type="button" title="Đăng xuất">
+				<a href="logout.html" class="icon ion-ios-log-out"></a>
+			</button>
+		</div>
+
+		<div class="sidebar__nav-wrap">
+			<ul class="sidebar__nav">
+				<li class="sidebar__nav-item">
+					<a href="index.html" class="sidebar__nav-link">
+						<span>Dashboard</span>
+					</a>
+				</li>
+				<li class="sidebar__nav-item">
+					<a href="manage_hotels.html" class="sidebar__nav-link">
+						<span>Quản lý khách sạn</span>
+					</a>
+				</li>
+				<li class="sidebar__nav-item">
+					<a href="manage_system.html" class="sidebar__nav-link">
+						<span>Quản lý hệ thống</span>
+					</a>
+				</li>
+				<li class="sidebar__nav-item">
+					<a href="manage_users.html" class="sidebar__nav-link">
+						<span>Quản lý người dùng</span>
+					</a>
+				</li>
+				<li class="sidebar__nav-item">
+					<a href="manage_bookings.html" class="sidebar__nav-link">
+						<span>Quản lý đặt phòng</span>
+					</a>
+				</li>
+				<li class="sidebar__nav-item">
+					<a href="manage_transactions.html" class="sidebar__nav-link">
+						<span>Quản lý giao dịch</span>
+					</a>
+				</li>
+				<li class="sidebar__nav-item">
+					<a href="reports.html" class="sidebar__nav-link">
+						<span>Báo cáo thống kê</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		
+		<div class="sidebar__copyright">
+			© 2024 やばい. <br>
+			Create by <a href="index.html" target="_blank">やばい Team</a>
+		</div>
+	</div>
+
+	<!-- main content -->
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row row--grid">
+				<div class="col-12">
+					<div class="main__title fade-in">
+						<h2>Quản lý khách sạn</h2>
+						<button class="main__title-link" onclick="showAddHotelModal()">+ Thêm khách sạn mới</button>
+					</div>
+				</div>
+
+				<!-- Hotel List -->
+				<div class="col-12">
+					<div class="card fade-in">
+						<div class="card-header">
+							<h3 class="card-title">Danh sách khách sạn của bạn</h3>
+							<div class="dashbox__wrap">
+								<a class="dashbox__refresh" href="#" onclick="refreshHotelList(); return false;" title="Làm mới">
+									<i class="icon ion-ios-refresh"></i>
+								</a>
+							</div>
+						</div>
+
+						<div class="table-container">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Tên khách sạn</th>
+										<th>Địa chỉ</th>
+										<th>Số phòng</th>
+										<th>Đánh giá</th>
+										<th>Trạng thái</th>
+										<th>Hành động</th>
+									</tr>
+								</thead>
+								<tbody id="hotelTableBody">
+									<tr>
+										<td>#H001</td>
+										<td>Grand Hotel Luxury</td>
+										<td>123 Nguyễn Huệ, Q1, TP.HCM</td>
+										<td>50</td>
+										<td>⭐ 4.5 (128 đánh giá)</td>
+										<td><span class="status active">Hoạt động</span></td>
+										<td>
+											<button class="btn btn-sm btn-secondary" onclick="editHotel('H001')"> Sửa</button>
+											<button class="btn btn-sm btn-success" onclick="viewHotelDetails('H001')"> Chi tiết</button>
+										</td>
+									</tr>
+									<tr>
+										<td>#H002</td>
+										<td>Beach Resort Paradise</td>
+										<td>456 Trần Phú, Nha Trang</td>
+										<td>80</td>
+										<td>⭐ 4.8 (256 đánh giá)</td>
+										<td><span class="status active">Hoạt động</span></td>
+										<td>
+											<button class="btn btn-sm btn-secondary" onclick="editHotel('H002')"> Sửa</button>
+											<button class="btn btn-sm btn-success" onclick="viewHotelDetails('H002')"> Chi tiết</button>
+										</td>
+									</tr>
+									<tr>
+										<td>#H003</td>
+										<td>Mountain View Hotel</td>
+										<td>789 Lê Lợi, Đà Lạt</td>
+										<td>35</td>
+										<td>⭐ 4.2 (89 đánh giá)</td>
+										<td><span class="status pending">Chờ duyệt</span></td>
+										<td>
+											<button class="btn btn-sm btn-secondary" onclick="editHotel('H003')"> Sửa</button>
+											<button class="btn btn-sm btn-success" onclick="viewHotelDetails('H003')"> Chi tiết</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+				<!-- Hotel Statistics -->
+				<div class="col-12">
+					<div class="stats-grid fade-in">
+						<div class="stat-card">
+							<div class="stat-number">3</div>
+							<div class="stat-label">Tổng khách sạn</div>
+						</div>
+						<div class="stat-card">
+							<div class="stat-number">165</div>
+							<div class="stat-label">Tổng số phòng</div>
+						</div>
+						<div class="stat-card">
+							<div class="stat-number">4.5</div>
+							<div class="stat-label">Đánh giá trung bình</div>
+						</div>
+						<div class="stat-card">
+							<div class="stat-number">85%</div>
+							<div class="stat-label">Tỷ lệ lấp đầy</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<!-- Modal Overlay -->
+	<div id="modalOverlay" class="modal-overlay" onclick="closeModal()"></div>
+
+	<!-- Add Hotel Modal -->
+	<div id="addHotelModal" class="modal-container">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2>➕ Thêm khách sạn mới</h2>
+				<button class="modal-close" onclick="closeModal()">✕</button>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label>Tên khách sạn *</label>
+					<input type="text" class="form-control" id="hotelName" placeholder="Nhập tên khách sạn">
+				</div>
+				<div class="form-group">
+					<label>Địa chỉ *</label>
+					<input type="text" class="form-control" id="hotelAddress" placeholder="Số nhà, đường, quận, thành phố">
+				</div>
+				<div class="row">
+					<div class="col-xl-6">
+						<div class="form-group">
+							<label>Số phòng *</label>
+							<input type="number" class="form-control" id="hotelRooms" placeholder="Số lượng phòng">
+						</div>
+					</div>
+					<div class="col-xl-6">
+						<div class="form-group">
+							<label>Giá trung bình/đêm *</label>
+							<input type="number" class="form-control" id="hotelPrice" placeholder="VNĐ">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label>Mô tả</label>
+					<textarea class="form-control" id="hotelDescription" rows="4" placeholder="Mô tả về khách sạn..."></textarea>
+				</div>
+				<div class="form-group">
+					<label>Tiện nghi</label>
+					<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+						<label style="display: flex; align-items: center; gap: 8px;">
+							<input type="checkbox" value="wifi"> WiFi miễn phí
+						</label>
+						<label style="display: flex; align-items: center; gap: 8px;">
+							<input type="checkbox" value="pool"> Hồ bơi
+						</label>
+						<label style="display: flex; align-items: center; gap: 8px;">
+							<input type="checkbox" value="parking"> Bãi đỗ xe
+						</label>
+						<label style="display: flex; align-items: center; gap: 8px;">
+							<input type="checkbox" value="restaurant"> Nhà hàng
+						</label>
+						<label style="display: flex; align-items: center; gap: 8px;">
+							<input type="checkbox" value="gym"> Phòng gym
+						</label>
+						<label style="display: flex; align-items: center; gap: 8px;">
+							<input type="checkbox" value="spa"> Spa
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-secondary" onclick="closeModal()">Hủy</button>
+				<button class="btn btn-success" onclick="saveHotel()"> Lưu khách sạn</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Edit Hotel Modal -->
+	<div id="editHotelModal" class="modal-container">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2>Chỉnh sửa khách sạn</h2>
+				<button class="modal-close" onclick="closeModal()">✕</button>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label>Tên khách sạn *</label>
+					<input type="text" class="form-control" id="editHotelName" value="Grand Hotel Luxury">
+				</div>
+				<div class="form-group">
+					<label>Địa chỉ *</label>
+					<input type="text" class="form-control" id="editHotelAddress" value="123 Nguyễn Huệ, Q1, TP.HCM">
+				</div>
+				<div class="row">
+					<div class="col-xl-6">
+						<div class="form-group">
+							<label>Số phòng *</label>
+							<input type="number" class="form-control" id="editHotelRooms" value="50">
+						</div>
+					</div>
+					<div class="col-xl-6">
+						<div class="form-group">
+							<label>Giá trung bình/đêm *</label>
+							<input type="number" class="form-control" id="editHotelPrice" value="1500000">
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label>Trạng thái</label>
+					<select class="form-control" id="editHotelStatus">
+						<option value="active">Hoạt động</option>
+						<option value="pending">Chờ duyệt</option>
+						<option value="inactive">Tạm ngưng</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Mô tả</label>
+					<textarea class="form-control" id="editHotelDescription" rows="4">Khách sạn cao cấp với đầy đủ tiện nghi hiện đại</textarea>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-danger" onclick="deleteHotel()"> Xóa</button>
+				<button class="btn btn-secondary" onclick="closeModal()">Hủy</button>
+				<button class="btn btn-success" onclick="updateHotel()"> Cập nhật</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- View Hotel Details Modal -->
+	<div id="detailsHotelModal" class="modal-container">
+		<div class="modal-content large">
+			<div class="modal-header">
+				<h2>🏨 Chi tiết khách sạn</h2>
+				<button class="modal-close" onclick="closeModal()">✕</button>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-xl-6">
+						<div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+							<h3 style="margin-bottom: 15px; color: #667eea;">📋 Thông tin cơ bản</h3>
+							<p style="margin-bottom: 10px;"><strong>ID:</strong> #H001</p>
+							<p style="margin-bottom: 10px;"><strong>Tên:</strong> Grand Hotel Luxury</p>
+							<p style="margin-bottom: 10px;"><strong>Địa chỉ:</strong> 123 Nguyễn Huệ, Q1, TP.HCM</p>
+							<p style="margin-bottom: 10px;"><strong>Số phòng:</strong> 50 phòng</p>
+							<p style="margin-bottom: 10px;"><strong>Giá TB:</strong> 1,500,000 VNĐ/đêm</p>
+							<p style="margin-bottom: 0;"><strong>Trạng thái:</strong> <span class="status active">Hoạt động</span></p>
+						</div>
+
+						<div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+							<h3 style="margin-bottom: 15px; color: #667eea;">⭐ Đánh giá</h3>
+							<div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+								<div style="font-size: 36px; font-weight: bold; color: #ffc107;">4.5</div>
+								<div>
+									<div style="color: #ffc107; font-size: 20px;">★★★★☆</div>
+									<div style="color: #6c757d; font-size: 14px;">128 đánh giá</div>
+								</div>
+							</div>
+							<div style="margin-top: 15px;">
+								<div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+									<span>5 sao</span>
+									<span>75</span>
+								</div>
+								<div style="background: #e9ecef; height: 8px; border-radius: 4px; margin-bottom: 10px;">
+									<div style="background: linear-gradient(90deg, #667eea, #764ba2); width: 58%; height: 100%; border-radius: 4px;"></div>
+								</div>
+								<div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+									<span>4 sao</span>
+									<span>35</span>
+								</div>
+								<div style="background: #e9ecef; height: 8px; border-radius: 4px; margin-bottom: 10px;">
+									<div style="background: linear-gradient(90deg, #667eea, #764ba2); width: 27%; height: 100%; border-radius: 4px;"></div>
+								</div>
+								<div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+									<span>3 sao</span>
+									<span>12</span>
+								</div>
+								<div style="background: #e9ecef; height: 8px; border-radius: 4px; margin-bottom: 10px;">
+									<div style="background: linear-gradient(90deg, #667eea, #764ba2); width: 9%; height: 100%; border-radius: 4px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-xl-6">
+						<div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+							<h3 style="margin-bottom: 15px; color: #667eea;">✨ Tiện nghi</h3>
+							<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;">
+								<div style="display: flex; align-items: center; gap: 8px;">
+									<span style="color: #28a745; font-size: 18px;">✓</span>
+									<span>WiFi miễn phí</span>
+								</div>
+								<div style="display: flex; align-items: center; gap: 8px;">
+									<span style="color: #28a745; font-size: 18px;">✓</span>
+									<span>Hồ bơi</span>
+								</div>
+								<div style="display: flex; align-items: center; gap: 8px;">
+									<span style="color: #28a745; font-size: 18px;">✓</span>
+									<span>Bãi đỗ xe</span>
+								</div>
+								<div style="display: flex; align-items: center; gap: 8px;">
+									<span style="color: #28a745; font-size: 18px;">✓</span>
+									<span>Nhà hàng</span>
+								</div>
+								<div style="display: flex; align-items: center; gap: 8px;">
+									<span style="color: #28a745; font-size: 18px;">✓</span>
+									<span>Phòng gym</span>
+								</div>
+								<div style="display: flex; align-items: center; gap: 8px;">
+									<span style="color: #28a745; font-size: 18px;">✓</span>
+									<span>Spa</span>
+								</div>
+							</div>
+						</div>
+
+						<div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+							<h3 style="margin-bottom: 15px; color: #667eea;">📊 Thống kê</h3>
+							<div style="display: grid; gap: 15px;">
+								<div style="display: flex; justify-content: space-between; padding-bottom: 10px; border-bottom: 1px solid #dee2e6;">
+									<span>Đặt phòng trong tháng:</span>
+									<strong>342</strong>
+								</div>
+								<div style="display: flex; justify-content: space-between; padding-bottom: 10px; border-bottom: 1px solid #dee2e6;">
+									<span>Doanh thu tháng này:</span>
+									<strong style="color: #28a745;">245M VNĐ</strong>
+								</div>
+								<div style="display: flex; justify-content: space-between; padding-bottom: 10px; border-bottom: 1px solid #dee2e6;">
+									<span>Tỷ lệ lấp đầy:</span>
+									<strong style="color: #667eea;">87%</strong>
+								</div>
+								<div style="display: flex; justify-content: space-between;">
+									<span>Tỷ lệ hủy phòng:</span>
+									<strong style="color: #dc3545;">5%</strong>
+								</div>
+							</div>
+						</div>
+
+						<div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+							<h3 style="margin-bottom: 15px; color: #667eea;">📅 Thông tin khác</h3>
+							<p style="margin-bottom: 10px;"><strong>Ngày đăng ký:</strong> 15/03/2024</p>
+							<p style="margin-bottom: 10px;"><strong>Cập nhật lần cuối:</strong> 25/10/2025</p>
+							<p style="margin-bottom: 0;"><strong>Người quản lý:</strong> Nguyễn Văn A</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-secondary" onclick="closeModal()">Đóng</button>
+				<button class="btn" onclick="closeModal(); editHotel('H001')">Chỉnh sửa</button>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/manage_hotel.js"></script>
+</body>
+</html>

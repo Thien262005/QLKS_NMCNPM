@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đơn Đặt Phòng - やばい</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="../css/my-bookings.css" rel="stylesheet">
+
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-crown"></i>
+                やばい
+            </a>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link"> Trang Chủ</a></li>
+                    <li><a href="booking.html" class="nav-link"> Đặt Phòng</a></li>
+                    <li><a href="my-bookings.html" class="nav-link"> Đơn Của Tôi </a></li>
+                    <li><a href="hotel-detail.html" class="nav-link"> Khách Sạn</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons">
+                <a href="login.html" class="btn btn-outline">
+                    Đăng Nhập
+                </a>
+                <a href="register.html" class="btn btn-primary">
+                    Đăng Ký
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">
+                <i class="fas fa-list-alt"></i>
+                Đơn Đặt Phòng Của Tôi
+            </h1>
+            <p class="page-subtitle">Quản lý tất cả đơn đặt phòng của bạn tại đây</p>
+        </div>
+
+        <div class="filter-tabs">
+            <button class="tab active" onclick="filterBookings('all')">
+                <i class="fas fa-list"></i> Tất cả
+            </button>
+            <button class="tab" onclick="filterBookings('confirmed')">
+                <i class="fas fa-check-circle"></i> Đã xác nhận
+            </button>
+            <button class="tab" onclick="filterBookings('pending')">
+                <i class="fas fa-clock"></i> Chờ xác nhận
+            </button>
+            <button class="tab" onclick="filterBookings('completed')">
+                <i class="fas fa-flag-checkered"></i> Đã hoàn thành
+            </button>
+            <button class="tab" onclick="filterBookings('cancelled')">
+                <i class="fas fa-times-circle"></i> Đã hủy
+            </button>
+        </div>
+
+        <div class="bookings-list" id="bookingsList">
+            <!-- Bookings will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Cancel Confirmation Modal -->
+    <div class="modal" id="cancelModal">
+        <div class="modal-content">
+            <h3 class="modal-header">
+                <i class="fas fa-exclamation-triangle" style="color: #dc3545;"></i>
+                Xác Nhận Hủy Đặt Phòng
+            </h3>
+            <div class="modal-body">
+                Bạn có chắc chắn muốn hủy đặt phòng này không? 
+                <br><br>
+                <strong>Lưu ý:</strong> 
+                <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+                    <li>Hủy trước 24h: Được hoàn 100% tiền</li>
+                    <li>Hủy trong vòng 24h: Không được hoàn tiền</li>
+                </ul>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-cancel" onclick="closeModal()">
+                    Không, giữ đặt phòng
+                </button>
+                <button class="modal-btn modal-btn-confirm" onclick="confirmCancel()">
+                    Có, hủy ngay
+                </button>
+            </div>
+        </div>
+    </div>
+
+<script src="js/my-bookings.js"></script>
+</body>
+</html>

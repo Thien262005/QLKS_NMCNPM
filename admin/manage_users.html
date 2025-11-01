@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Quản lý người dùng - やばい Admin</title>
+	<link rel="stylesheet" href="css/admin.css">
+	<link rel="stylesheet" href="css/modal_users.css">
+	<link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+</head>
+<body>
+	<header class="header">
+		<div class="header__content">
+			<a href="index.html" class="header__logo">
+				<img src="img/logo.png" alt="やばい Logo">
+			</a>
+			<button class="header__btn" type="button" onclick="toggleSidebar()">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+		</div>
+	</header>
+
+	<div class="sidebar" id="sidebar">
+		<a href="index.html" class="header__logo">
+			<img src="img/logo.png" alt="やばい Logo" style="padding-left: 20px;">
+		</a>
+
+		<div class="sidebar__user">
+			<div class="sidebar__user-img">
+				<img src="img/user.svg" alt="User Avatar">
+			</div>
+			<div class="sidebar__user-info">
+				<span class="sidebar__user-name">Admin</span>
+				<span class="sidebar__user-email">admin@yabai.com</span>
+			</div>
+			<button class="sidebar__user-btn" type="button" title="Đăng xuất">
+				<a href="logout.php" class="icon ion-ios-log-out"></a>
+			</button>
+		</div>
+
+		<div class="sidebar__nav-wrap">
+			<ul class="sidebar__nav">
+				<li class="sidebar__nav-item">
+					<a href="index.html" class="sidebar__nav-link">
+						<span>Dashboard</span>
+					</a>
+				</li>
+				<li class="sidebar__nav-item">
+					<a href="manage_hotels.html" class="sidebar__nav-link">
+						<span>Quản lý khách sạn</span>
+					</a>
+				</li>
+				<li class="sidebar__nav-item">
+					<a href="manage_system.html" class="sidebar__nav-link">
+						<span>Quản lý hệ thống</span>
+					</a>
+				</li>
+				<li class="sidebar__nav-item">
+					<a href="manage_users.html" class="sidebar__nav-link">
+						<span>Quản lý người dùng</span>
+					</a>
+				</li>
+				<li class="sidebar__nav-item">
+					<a href="manage_bookings.html" class="sidebar__nav-link">
+						<span>Quản lý đặt phòng</span>
+					</a>
+				</li>
+				<li class="sidebar__nav-item">
+					<a href="manage_transactions.html" class="sidebar__nav-link">
+						<span>Quản lý giao dịch</span>
+					</a>
+				</li>
+				<li class="sidebar__nav-item">
+					<a href="reports.html" class="sidebar__nav-link">
+						<span>Báo cáo thống kê</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="sidebar__copyright">
+			© 2024 やばい. <br>
+			Create by <a href="index.html" target="_blank">やばい Team</a>
+		</div>
+	</div>
+
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row row--grid">
+				<div class="col-12">
+					<div class="main__title fade-in">
+						<h2>Quản lý người dùng</h2>
+						<button class="main__title-link" onclick="showAddUserModal()">+ Thêm người dùng</button>
+					</div>
+				</div>
+
+				<!-- User Statistics -->
+				<div class="col-12">
+					<div class="stats-grid fade-in">
+						<div class="stat-card">
+							<div class="stat-number">1,248</div>
+							<div class="stat-label">Tổng người dùng</div>
+						</div>
+						<div class="stat-card">
+							<div class="stat-number">985</div>
+							<div class="stat-label">Khách hàng</div>
+						</div>
+						<div class="stat-card">
+							<div class="stat-number">258</div>
+							<div class="stat-label">Chủ khách sạn</div>
+						</div>
+						<div class="stat-card">
+							<div class="stat-number">5</div>
+							<div class="stat-label">Quản trị viên</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Filter Section -->
+				<div class="col-12">
+					<div class="card fade-in">
+						<div class="card-header">
+							<h3 class="card-title">Tìm kiếm và lọc</h3>
+						</div>
+						<div class="d-flex gap-15">
+							<div class="form-group" style="flex: 2;">
+								<input type="text" class="form-control" placeholder="Tìm kiếm theo tên, email, số điện thoại...">
+							</div>
+							<div class="form-group" style="flex: 1;">
+								<select class="form-control" onchange="filterByRole(this.value)">
+									<option value="all">Tất cả vai trò</option>
+									<option value="customer">Khách hàng</option>
+									<option value="owner">Chủ khách sạn</option>
+									<option value="admin">Quản trị viên</option>
+								</select>
+							</div>
+							<div class="form-group" style="flex: 1;">
+								<select class="form-control" onchange="filterByStatus(this.value)">
+									<option value="all">Tất cả trạng thái</option>
+									<option value="active">Hoạt động</option>
+									<option value="inactive">Tạm khóa</option>
+									<option value="banned">Đã cấm</option>
+								</select>
+							</div>
+							<div class="form-group" style="display: flex; align-items: flex-end;">
+								<button class="btn btn-success" onclick="applySearch()">Tìm kiếm</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Users List -->
+				<div class="col-12">
+					<div class="card fade-in">
+						<div class="card-header">
+							<h3 class="card-title">Danh sách người dùng</h3>
+							<div class="dashbox__wrap">
+								<a class="dashbox__refresh" href="#" onclick="refreshUserList(); return false;" title="Làm mới">
+									<i class="icon ion-ios-refresh"></i>
+								</a>
+							</div>
+						</div>
+
+						<div class="table-container">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>ID</th>
+										<th>Họ tên</th>
+										<th>Email</th>
+										<th>Số điện thoại</th>
+										<th>Vai trò</th>
+										<th>Ngày đăng ký</th>
+										<th>Trạng thái</th>
+										<th>Hành động</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>#U001</td>
+										<td>Nguyễn Văn A</td>
+										<td>nguyenvana@email.com</td>
+										<td>0901234567</td>
+										<td><span class="badge badge-info">Khách hàng</span></td>
+										<td>15/12/2024</td>
+										<td><span class="status active">Hoạt động</span></td>
+										<td>
+											<button class="btn btn-sm btn-secondary" onclick="editUser('U001')">Sửa</button>
+											<button class="btn btn-sm btn-danger" onclick="blockUser('U001')">Khóa</button>
+										</td>
+									</tr>
+									<tr>
+										<td>#U002</td>
+										<td>Trần Thị B</td>
+										<td>tranthib@email.com</td>
+										<td>0912345678</td>
+										<td><span class="badge badge-success">Chủ KS</span></td>
+										<td>10/12/2024</td>
+										<td><span class="status active">Hoạt động</span></td>
+										<td>
+											<button class="btn btn-sm btn-secondary" onclick="editUser('U002')">Sửa</button>
+											<button class="btn btn-sm btn-danger" onclick="blockUser('U002')">Khóa</button>
+										</td>
+									</tr>
+									<tr>
+										<td>#U003</td>
+										<td>Lê Văn C</td>
+										<td>levanc@email.com</td>
+										<td>0923456789</td>
+										<td><span class="badge badge-info">Khách hàng</span></td>
+										<td>08/12/2024</td>
+										<td><span class="status inactive">Tạm khóa</span></td>
+										<td>
+											<button class="btn btn-sm btn-secondary" onclick="editUser('U003')">Sửa</button>
+											<button class="btn btn-sm btn-success" onclick="unblockUser('U003')">Mở khóa</button>
+										</td>
+									</tr>
+									<tr>
+										<td>#U004</td>
+										<td>Phạm Thị D</td>
+										<td>phamthid@email.com</td>
+										<td>0934567890</td>
+										<td><span class="badge badge-success">Chủ KS</span></td>
+										<td>05/12/2024</td>
+										<td><span class="status active">Hoạt động</span></td>
+										<td>
+											<button class="btn btn-sm btn-secondary" onclick="editUser('U004')">Sửa</button>
+											<button class="btn btn-sm btn-danger" onclick="blockUser('U004')">Khóa</button>
+										</td>
+									</tr>
+									<tr>
+										<td>#U005</td>
+										<td>Hoàng Văn E</td>
+										<td>hoangvane@email.com</td>
+										<td>0945678901</td>
+										<td><span class="badge badge-info">Khách hàng</span></td>
+										<td>01/12/2024</td>
+										<td><span class="status active">Hoạt động</span></td>
+										<td>
+											<button class="btn btn-sm btn-secondary" onclick="editUser('U005')">Sửa</button>
+											<button class="btn btn-sm btn-danger" onclick="blockUser('U005')">Khóa</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+				<!-- Pagination -->
+				<div class="col-12">
+					<div class="d-flex justify-content-between align-items-center" style="padding: 20px;">
+						<div>Hiển thị 1-5 của 1,248 người dùng</div>
+						<div class="d-flex gap-10">
+							<button class="btn btn-sm btn-secondary">« Trước</button>
+							<button class="btn btn-sm btn-success">1</button>
+							<button class="btn btn-sm btn-secondary">2</button>
+							<button class="btn btn-sm btn-secondary">3</button>
+							<button class="btn btn-sm btn-secondary">...</button>
+							<button class="btn btn-sm btn-secondary">250</button>
+							<button class="btn btn-sm btn-secondary">Sau »</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<!-- Modal Overlay -->
+	<div id="modalOverlay" class="modal-overlay" onclick="closeModal()"></div>
+
+	<!-- Add User Modal -->
+	<div id="addUserModal" class="modal-container">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2>➕ Thêm người dùng mới</h2>
+				<button class="modal-close" onclick="closeModal()">✕</button>
+			</div>
+			<div class="modal-body">
+				<form id="addUserForm">
+					<!-- Avatar Upload -->
+					<div class="avatar-upload">
+						<div class="avatar-preview" id="avatarPreview">
+							<span>👤</span>
+						</div>
+						<label for="avatarUpload">📷 Chọn ảnh đại diện</label>
+						<input type="file" id="avatarUpload" accept="image/*" onchange="previewAvatar(this, 'avatarPreview')">
+					</div>
+
+					<!-- User Info -->
+					<div class="form-row">
+						<div class="form-group">
+							<label>Họ và tên *</label>
+							<input type="text" class="form-control" id="userName" placeholder="Nhập họ tên đầy đủ" required>
+						</div>
+						<div class="form-group">
+							<label>Email *</label>
+							<input type="email" class="form-control" id="userEmail" placeholder="email@example.com" required>
+						</div>
+					</div>
+
+					<div class="form-row">
+						<div class="form-group">
+							<label>Số điện thoại *</label>
+							<input type="tel" class="form-control" id="userPhone" placeholder="0901234567" required>
+						</div>
+						<div class="form-group">
+							<label>Vai trò *</label>
+							<select class="form-control" id="userRole" required>
+								<option value="">Chọn vai trò</option>
+								<option value="customer">Khách hàng</option>
+								<option value="owner">Chủ khách sạn</option>
+								<option value="admin">Quản trị viên</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="form-row">
+						<div class="form-group">
+							<label>Mật khẩu *</label>
+							<input type="password" class="form-control" id="userPassword" placeholder="Tối thiểu 6 ký tự" required>
+						</div>
+						<div class="form-group">
+							<label>Xác nhận mật khẩu *</label>
+							<input type="password" class="form-control" id="userConfirmPassword" placeholder="Nhập lại mật khẩu" required>
+						</div>
+					</div>
+
+					<div class="form-group form-group-full">
+						<label>Địa chỉ</label>
+						<input type="text" class="form-control" id="userAddress" placeholder="Số nhà, đường, quận, thành phố">
+						</div>
+
+					<div class="form-group form-group-full">
+						<label>Ghi chú</label>
+						<textarea class="form-control" id="userNote" rows="3" placeholder="Ghi chú thêm về người dùng..."></textarea>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-secondary" onclick="closeModal()">Hủy</button>
+				<button class="btn btn-success" onclick="saveUser()">Lưu người dùng</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- Edit User Modal -->
+	<div id="editUserModal" class="modal-container">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h2>✏️ Chỉnh sửa người dùng</h2>
+				<button class="modal-close" onclick="closeModal()">✕</button>
+			</div>
+			<div class="modal-body">
+				<!-- Avatar Upload -->
+				<div class="avatar-upload">
+					<div class="avatar-preview" id="editAvatarPreview">
+						<span>👤</span>
+					</div>
+					<label for="editAvatarUpload">📷 Thay đổi ảnh đại diện</label>
+					<input type="file" id="editAvatarUpload" accept="image/*" onchange="previewAvatar(this, 'editAvatarPreview')">
+				</div>
+
+				<!-- User Info Box -->
+				<div class="user-info-box">
+					<h4>📋 Thông tin tài khoản</h4>
+					<div class="user-info-item">
+						<span class="user-info-label">ID:</span>
+						<span class="user-info-value">#U001</span>
+					</div>
+					<div class="user-info-item">
+						<span class="user-info-label">Ngày đăng ký:</span>
+						<span class="user-info-value">15/12/2024</span>
+					</div>
+					<div class="user-info-item">
+						<span class="user-info-label">Lần đăng nhập cuối:</span>
+						<span class="user-info-value">01/11/2025 10:30</span>
+					</div>
+				</div>
+
+				<form id="editUserForm">
+					<div class="form-row">
+						<div class="form-group">
+							<label>Họ và tên *</label>
+							<input type="text" class="form-control" id="editUserName" required>
+						</div>
+						<div class="form-group">
+							<label>Email *</label>
+							<input type="email" class="form-control" id="editUserEmail" required>
+						</div>
+					</div>
+
+					<div class="form-row">
+						<div class="form-group">
+							<label>Số điện thoại *</label>
+							<input type="tel" class="form-control" id="editUserPhone" required>
+						</div>
+						<div class="form-group">
+							<label>Vai trò *</label>
+							<select class="form-control" id="editUserRole" required>
+								<option value="customer">Khách hàng</option>
+								<option value="owner">Chủ khách sạn</option>
+								<option value="admin">Quản trị viên</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="form-row">
+						<div class="form-group">
+							<label>Trạng thái *</label>
+							<select class="form-control" id="editUserStatus" required>
+								<option value="active">Hoạt động</option>
+								<option value="inactive">Tạm khóa</option>
+								<option value="banned">Đã cấm</option>
+							</select>
+						</div>
+						<div class="form-group" style="display: flex; align-items: flex-end;">
+							<button type="button" class="btn btn-secondary" onclick="resetPassword()">Reset mật khẩu</button>
+						</div>
+					</div>
+
+					<div class="form-group form-group-full">
+						<label>Địa chỉ</label>
+						<input type="text" class="form-control" id="editUserAddress">
+					</div>
+
+					<div class="form-group form-group-full">
+						<label>Ghi chú</label>
+						<textarea class="form-control" id="editUserNote" rows="3"></textarea>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-danger" onclick="deleteUser()">Xóa</button>
+				<button class="btn btn-secondary" onclick="closeModal()">Hủy</button>
+				<button class="btn btn-success" onclick="updateUser()">Cập nhật</button>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/manage_users.js"></script>
+</body>
+</html>

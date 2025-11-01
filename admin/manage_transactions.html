@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Quản lý giao dịch - Admin</title>
+	<link rel="stylesheet" href="css/admin.css">
+	<link rel="stylesheet" href="css/modal_transaction.css">
+	<link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+</head>
+<body>
+	<header class="header">
+		<div class="header__content">
+			<a href="index.html" class="header__logo">
+				<img src="img/logo.png" alt="LuxStay Logo">
+			</a>
+			<button class="header__btn" type="button" onclick="toggleSidebar()">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+		</div>
+	</header>
+
+	<div class="sidebar" id="sidebar">
+		<a href="index.html" class="header__logo">
+			<img src="img/logo.png" alt="LuxStay Logo" style="padding-left: 20px;">
+		</a>
+
+		<div class="sidebar__user">
+			<div class="sidebar__user-img">
+				<img src="img/user.svg" alt="User Avatar">
+			</div>
+			<div class="sidebar__user-info">
+				<span class="sidebar__user-name">Admin</span>
+				<span class="sidebar__user-email">admin@yabai.com</span>
+			</div>
+			<button class="sidebar__user-btn" type="button" title="Đăng xuất">
+				<a href="logout.php" class="icon ion-ios-log-out"></a>
+			</button>
+		</div>
+
+		<div class="sidebar__nav-wrap">
+			<ul class="sidebar__nav">
+				<li class="sidebar__nav-item">
+					<a href="index.html" class="sidebar__nav-link sidebar__nav-link--active">
+						<span>Dashboard</span>
+					</a>
+				</li>
+
+				<li class="sidebar__nav-item">
+					<a href="manage_hotels.html" class="sidebar__nav-link">
+						<span>Quản lý khách sạn</span>
+					</a>
+				</li>
+
+				<li class="sidebar__nav-item">
+					<a href="manage_system.html" class="sidebar__nav-link">
+						<span>Quản lý hệ thống</span>
+					</a>
+				</li>
+
+				<li class="sidebar__nav-item">
+					<a href="manage_users.html" class="sidebar__nav-link">
+						<span>Quản lý người dùng</span>
+					</a>
+				</li>
+
+				<li class="sidebar__nav-item">
+					<a href="manage_bookings.html" class="sidebar__nav-link">
+						<span>Quản lý đặt phòng</span>
+					</a>
+				</li>
+
+				<li class="sidebar__nav-item">
+					<a href="manage_transactions.html" class="sidebar__nav-link">
+						<span>Quản lý giao dịch</span>
+					</a>
+				</li>
+
+				<li class="sidebar__nav-item">
+					<a href="reports.html" class="sidebar__nav-link">
+						<span>Báo cáo thống kê</span>
+					</a>
+				</li>
+
+			</ul>
+		</div>
+
+		<div class="sidebar__copyright">
+			© 2024 LuxStay. <br>
+			Create by <a href="index.html" target="_blank">LuxStay Team</a>
+		</div>
+	</div>
+
+	<main class="main">
+		<div class="container-fluid">
+			<div class="row row--grid">
+				<div class="col-12">
+					<div class="main__title fade-in">
+						<h2>Quản lý giao dịch</h2>
+						<button class="main__title-link" onclick="exportTransactions()">📊 Xuất báo cáo</button>
+					</div>
+				</div>
+
+				<!-- Transaction Statistics -->
+				<div class="col-12">
+					<div class="stats-grid fade-in">
+						<div class="stat-card">
+							<div class="stat-number">125.8M</div>
+							<div class="stat-label">Tổng giao dịch (VNĐ)</div>
+						</div>
+						<div class="stat-card">
+							<div class="stat-number">3,452</div>
+							<div class="stat-label">Số giao dịch</div>
+						</div>
+						<div class="stat-card">
+							<div class="stat-number">3,385</div>
+							<div class="stat-label">Thành công</div>
+						</div>
+						<div class="stat-card">
+							<div class="stat-number">67</div>
+							<div class="stat-label">Thất bại</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Filter Section -->
+				<div class="col-12">
+					<div class="card fade-in">
+						<div class="card-header">
+							<h3 class="card-title">Tìm kiếm và lọc</h3>
+						</div>
+						<div class="d-flex gap-15">
+							<div class="form-group" style="flex: 2;">
+								<input type="text" class="form-control" placeholder="Tìm kiếm theo mã giao dịch, người dùng...">
+							</div>
+							<div class="form-group" style="flex: 1;">
+								<select class="form-control">
+									<option value="all">Tất cả trạng thái</option>
+									<option value="success">Thành công</option>
+									<option value="pending">Đang xử lý</option>
+									<option value="failed">Thất bại</option>
+									<option value="refunded">Đã hoàn tiền</option>
+								</select>
+							</div>
+							<div class="form-group" style="flex: 1;">
+								<select class="form-control">
+									<option value="all">Phương thức thanh toán</option>
+									<option value="card">Thẻ tín dụng</option>
+									<option value="banking">Chuyển khoản</option>
+									<option value="momo">MoMo</option>
+									<option value="zalopay">ZaloPay</option>
+								</select>
+							</div>
+							<div class="form-group" style="flex: 1;">
+								<input type="date" class="form-control">
+							</div>
+							<div class="form-group" style="display: flex; align-items: flex-end;">
+								<button class="btn btn-success" onclick="applyFilter()">Tìm kiếm</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Transactions List -->
+				<div class="col-12">
+					<div class="card fade-in">
+						<div class="card-header">
+							<h3 class="card-title">Danh sách giao dịch</h3>
+							<div class="dashbox__wrap">
+								<a class="dashbox__refresh" href="#" onclick="refreshTransactionList()" title="Làm mới">
+									<i class="icon ion-ios-refresh"></i>
+								</a>
+							</div>
+						</div>
+
+						<div class="table-container">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Mã GD</th>
+										<th>Mã đặt phòng</th>
+										<th>Người dùng</th>
+										<th>Khách sạn</th>
+										<th>Số tiền</th>
+										<th>Phương thức</th>
+										<th>Thời gian</th>
+										<th>Trạng thái</th>
+										<th>Hành động</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>#TXN54321</td>
+										<td>#BK3847</td>
+										<td>Nguyễn Văn A</td>
+										<td>Grand Hotel</td>
+										<td>3,000,000 VNĐ</td>
+										<td>Thẻ tín dụng</td>
+										<td>15/01/2025 14:35</td>
+										<td><span class="status active">Thành công</span></td>
+										<td>
+											<button class="btn btn-sm btn-secondary" onclick="viewTransaction('TXN54321')">Chi tiết</button>
+										</td>
+									</tr>
+									<tr>
+										<td>#TXN54320</td>
+										<td>#BK3846</td>
+										<td>Trần Thị B</td>
+										<td>Beach Resort</td>
+										<td>7,500,000 VNĐ</td>
+										<td>Chuyển khoản</td>
+										<td>14/01/2025 10:22</td>
+										<td><span class="status active">Thành công</span></td>
+										<td>
+											<button class="btn btn-sm btn-secondary" onclick="viewTransaction('TXN54320')">Chi tiết</button>
+										</td>
+									</tr>
+									<tr>
+										<td>#TXN54319</td>
+										<td>#BK3845</td>
+										<td>Lê Văn C</td>
+										<td>Mountain View</td>
+										<td>9,000,000 VNĐ</td>
+										<td>MoMo</td>
+										<td>10/01/2025 16:45</td>
+										<td><span class="status active">Thành công</span></td>
+										<td>
+											<button class="btn btn-sm btn-secondary" onclick="viewTransaction('TXN54319')">Chi tiết</button>
+										</td>
+									</tr>
+									<tr>
+										<td>#TXN54318</td>
+										<td>#BK3844</td>
+										<td>Phạm Thị D</td>
+										<td>Grand Hotel</td>
+										<td>1,600,000 VNĐ</td>
+										<td>ZaloPay</td>
+										<td>05/01/2025 09:15</td>
+										<td><span class="status active">Thành công</span></td>
+										<td>
+											<button class="btn btn-sm btn-secondary" onclick="viewTransaction('TXN54318')">Chi tiết</button>
+										</td>
+									</tr>
+									<tr>
+										<td>#TXN54317</td>
+										<td>#BK3843</td>
+										<td>Hoàng Văn E</td>
+										<td>Beach Resort</td>
+										<td>22,500,000 VNĐ</td>
+										<td>Thẻ tín dụng</td>
+										<td>28/12/2024 11:30</td>
+										<td><span class="status cancelled">Đã hoàn tiền</span></td>
+										<td>
+											<button class="btn btn-sm btn-secondary" onclick="viewTransaction('TXN54317')">Chi tiết</button>
+										</td>
+									</tr>
+									<tr>
+										<td>#TXN54316</td>
+										<td>#BK3842</td>
+										<td>Võ Thị F</td>
+										<td>Mountain View</td>
+										<td>4,200,000 VNĐ</td>
+										<td>Chuyển khoản</td>
+										<td>20/12/2024 15:20</td>
+										<td><span class="status inactive">Thất bại</span></td>
+										<td>
+											<button class="btn btn-sm btn-secondary" onclick="viewTransaction('TXN54316')">Chi tiết</button>
+											<button class="btn btn-sm btn-danger" onclick="retryTransaction('TXN54316')">Thử lại</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+				<!-- Payment Methods Analysis -->
+				<div class="col-xl-6">
+					<div class="card fade-in">
+						<div class="card-header">
+							<h3 class="card-title">Phân tích theo phương thức thanh toán</h3>
+						</div>
+						<div class="table-container">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Phương thức</th>
+										<th>Số giao dịch</th>
+										<th>Tổng tiền</th>
+										<th>Tỷ lệ</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Thẻ tín dụng</td>
+										<td>1,245</td>
+										<td>48,500,000 VNĐ</td>
+										<td>38.5%</td>
+									</tr>
+									<tr>
+										<td>Chuyển khoản</td>
+										<td>1,058</td>
+										<td>42,300,000 VNĐ</td>
+										<td>33.6%</td>
+									</tr>
+									<tr>
+										<td>MoMo</td>
+										<td>685</td>
+										<td>22,000,000 VNĐ</td>
+										<td>17.5%</td>
+									</tr>
+									<tr>
+										<td>ZaloPay</td>
+										<td>464</td>
+										<td>13,000,000 VNĐ</td>
+										<td>10.4%</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+				<!-- Transaction Status Summary -->
+				<div class="col-xl-6">
+					<div class="card fade-in">
+						<div class="card-header">
+							<h3 class="card-title">Tóm tắt trạng thái giao dịch</h3>
+						</div>
+						<div style="padding: 20px;">
+							<div style="margin-bottom: 20px;">
+								<div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+									<span>Thành công</span>
+									<span style="font-weight: bold; color: #28a745;">98.1%</span>
+								</div>
+								<div style="background: #e9ecef; height: 10px; border-radius: 5px; overflow: hidden;">
+									<div style="background: linear-gradient(45deg, #28a745, #20c997); width: 98.1%; height: 100%;"></div>
+								</div>
+							</div>
+							<div style="margin-bottom: 20px;">
+								<div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+									<span>Đang xử lý</span>
+									<span style="font-weight: bold; color: #ffc107;">0.5%</span>
+								</div>
+								<div style="background: #e9ecef; height: 10px; border-radius: 5px; overflow: hidden;">
+									<div style="background: linear-gradient(45deg, #ffc107, #ff9800); width: 0.5%; height: 100%;"></div>
+								</div>
+							</div>
+							<div style="margin-bottom: 20px;">
+								<div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+									<span>Thất bại</span>
+									<span style="font-weight: bold; color: #dc3545;">1.2%</span>
+								</div>
+								<div style="background: #e9ecef; height: 10px; border-radius: 5px; overflow: hidden;">
+									<div style="background: linear-gradient(45deg, #dc3545, #c82333); width: 1.2%; height: 100%;"></div>
+								</div>
+							</div>
+							<div style="margin-bottom: 20px;">
+								<div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+									<span>Đã hoàn tiền</span>
+									<span style="font-weight: bold; color: #6c757d;">0.2%</span>
+								</div>
+								<div style="background: #e9ecef; height: 10px; border-radius: 5px; overflow: hidden;">
+									<div style="background: linear-gradient(45deg, #6c757d, #495057); width: 0.2%; height: 100%;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Recent Transactions Activity -->
+				<div class="col-12">
+					<div class="card fade-in">
+						<div class="card-header">
+							<h3 class="card-title">Hoạt động giao dịch gần đây</h3>
+						</div>
+						<div style="padding: 20px;">
+							<div style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #28a745;">
+								<div style="display: flex; justify-content: space-between; align-items: center;">
+									<div>
+										<strong style="color: #28a745;">✓ Giao dịch thành công</strong>
+										<br>
+										#TXN54321 - Nguyễn Văn A thanh toán 3,000,000 VNĐ
+										<br>
+										<small style="color: #6c757d;">Phương thức: Thẻ tín dụng</small>
+									</div>
+									<div style="color: #6c757d; font-size: 14px;">1 phút trước</div>
+								</div>
+							</div>
+							<div style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #28a745;">
+								<div style="display: flex; justify-content: space-between; align-items: center;">
+									<div>
+										<strong style="color: #28a745;">✓ Giao dịch thành công</strong>
+										<br>
+										#TXN54320 - Trần Thị B thanh toán 7,500,000 VNĐ
+										<br>
+										<small style="color: #6c757d;">Phương thức: Chuyển khoản</small>
+									</div>
+									<div style="color: #6c757d; font-size: 14px;">8 phút trước</div>
+								</div>
+							</div>
+							<div style="margin-bottom: 15px; padding: 15px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid #dc3545;">
+								<div style="display: flex; justify-content: space-between; align-items: center;">
+									<div>
+										<strong style="color: #dc3545;">✗ Giao dịch thất bại</strong>
+										<br>
+										#TXN54316 - Võ Thị F thanh toán 4,200,000 VNĐ
+										<br>
+										<small style="color: #6c757d;">Lý do: Số dư không đủ</small>
+									</div>
+									<div style="color: #6c757d; font-size: 14px;">25 phút trước</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Pagination -->
+				<div class="col-12">
+					<div class="d-flex justify-content-between align-items-center" style="padding: 20px;">
+						<div>Hiển thị 1-6 của 3,452 giao dịch</div>
+						<div class="d-flex gap-10">
+							<button class="btn btn-sm btn-secondary">« Trước</button>
+							<button class="btn btn-sm btn-success">1</button>
+							<button class="btn btn-sm btn-secondary">2</button>
+							<button class="btn btn-sm btn-secondary">3</button>
+							<button class="btn btn-sm btn-secondary">...</button>
+							<button class="btn btn-sm btn-secondary">576</button>
+							<button class="btn btn-sm btn-secondary">Sau »</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<!-- Modal Overlay -->
+    <div id="transactionModalOverlay" class="transaction-modal-overlay" onclick="closeTransactionModal()"></div>
+
+    <!-- Transaction Detail Modal -->
+    <div id="transactionDetailModal" class="transaction-modal">
+        <div class="transaction-modal-header">
+            <h2 class="transaction-modal-title">
+                Chi tiết giao dịch
+            </h2>
+            <button class="transaction-modal-close" onclick="closeTransactionModal()">×</button>
+        </div>
+
+        <div class="transaction-modal-body">
+            <!-- Status Banner -->
+            <div class="transaction-status-banner success" id="transactionStatusBanner">
+                <span>Giao dịch thành công</span>
+            </div>
+
+            <!-- Transaction Info Grid -->
+            <div class="transaction-info-grid">
+                <div class="transaction-info-item">
+                    <div class="transaction-info-label">Mã giao dịch</div>
+                    <div class="transaction-info-value" id="txnId">#TXN54321</div>
+                </div>
+                <div class="transaction-info-item">
+                    <div class="transaction-info-label">Mã đặt phòng</div>
+                    <div class="transaction-info-value" id="bookingId">#BK3847</div>
+                </div>
+                <div class="transaction-info-item">
+                    <div class="transaction-info-label">Số tiền</div>
+                    <div class="transaction-info-value" id="amount" style="color: #28a745;">3,000,000 VNĐ</div>
+                </div>
+                <div class="transaction-info-item">
+                    <div class="transaction-info-label">Thời gian</div>
+                    <div class="transaction-info-value" id="txnTime">15/01/2025 14:35</div>
+                </div>
+            </div>
+
+            <!-- Customer Information -->
+            <div class="transaction-section">
+                <h3 class="transaction-section-title">
+                    Thông tin khách hàng
+                </h3>
+                <div class="transaction-detail-list">
+                    <div class="transaction-detail-row">
+                        <span class="transaction-detail-label">Họ và tên</span>
+                        <span class="transaction-detail-value" id="customerName">Nguyễn Văn A</span>
+                    </div>
+                    <div class="transaction-detail-row">
+                        <span class="transaction-detail-label">Email</span>
+                        <span class="transaction-detail-value" id="customerEmail">nguyenvana@email.com</span>
+                    </div>
+                    <div class="transaction-detail-row">
+                        <span class="transaction-detail-label">Số điện thoại</span>
+                        <span class="transaction-detail-value" id="customerPhone">0901234567</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hotel Information -->
+            <div class="transaction-section">
+                <h3 class="transaction-section-title">
+                    Thông tin khách sạn
+                </h3>
+                <div class="transaction-detail-list">
+                    <div class="transaction-detail-row">
+                        <span class="transaction-detail-label">Tên khách sạn</span>
+                        <span class="transaction-detail-value" id="hotelName">Grand Hotel</span>
+                    </div>
+                    <div class="transaction-detail-row">
+                        <span class="transaction-detail-label">Loại phòng</span>
+                        <span class="transaction-detail-value" id="roomType">Deluxe Room</span>
+                    </div>
+                    <div class="transaction-detail-row">
+                        <span class="transaction-detail-label">Check-in</span>
+                        <span class="transaction-detail-value" id="checkin">20/01/2025</span>
+                    </div>
+                    <div class="transaction-detail-row">
+                        <span class="transaction-detail-label">Check-out</span>
+                        <span class="transaction-detail-value" id="checkout">22/01/2025</span>
+                    </div>
+                    <div class="transaction-detail-row">
+                        <span class="transaction-detail-label">Số đêm</span>
+                        <span class="transaction-detail-value" id="nights">2 đêm</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Information -->
+            <div class="transaction-section">
+                <h3 class="transaction-section-title">
+                    Thông tin thanh toán
+                </h3>
+                <div class="transaction-detail-list">
+                    <div class="transaction-detail-row">
+                        <span class="transaction-detail-label">Phương thức thanh toán</span>
+                        <span class="transaction-detail-value">
+                            <span class="payment-method-badge" id="paymentMethod">
+                                Thẻ tín dụng
+                            </span>
+                        </span>
+                    </div>
+                    <div class="transaction-detail-row">
+                        <span class="transaction-detail-label">Mã thanh toán</span>
+                        <span class="transaction-detail-value" id="paymentCode">PAY123456789</span>
+                    </div>
+                    <div class="transaction-detail-row">
+                        <span class="transaction-detail-label">Giá phòng</span>
+                        <span class="transaction-detail-value" id="roomPrice">2,800,000 VNĐ</span>
+                    </div>
+                    <div class="transaction-detail-row">
+                        <span class="transaction-detail-label">Phí dịch vụ</span>
+                        <span class="transaction-detail-value" id="serviceFee">150,000 VNĐ</span>
+                    </div>
+                    <div class="transaction-detail-row">
+                        <span class="transaction-detail-label">Thuế VAT (5%)</span>
+                        <span class="transaction-detail-value" id="vat">50,000 VNĐ</span>
+                    </div>
+                    <div class="transaction-detail-row" style="border-top: 2px solid #667eea; padding-top: 15px; margin-top: 10px;">
+                        <span class="transaction-detail-label" style="font-size: 16px; color: #333;">Tổng cộng</span>
+                        <span class="transaction-detail-value" style="font-size: 18px; color: #28a745;" id="totalAmount">3,000,000 VNĐ</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transaction Timeline -->
+            <div class="transaction-section">
+                <h3 class="transaction-section-title">
+                    Lịch sử giao dịch
+                </h3>
+                <div class="transaction-timeline" id="transactionTimeline">
+                    <div class="timeline-item">
+                        <div class="timeline-item-time">15/01/2025 14:35:00</div>
+                        <div class="timeline-item-content">
+                            <strong>Giao dịch hoàn tất</strong><br>
+                            Thanh toán thành công 3,000,000 VNĐ
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-item-time">15/01/2025 14:34:45</div>
+                        <div class="timeline-item-content">
+                            <strong>Xác thực thanh toán</strong><br>
+                            Đang xác thực với ngân hàng...
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-item-time">15/01/2025 14:34:30</div>
+                        <div class="timeline-item-content">
+                            <strong>Khởi tạo giao dịch</strong><br>
+                            Người dùng bắt đầu thanh toán
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alert Box (if needed) -->
+            <div class="alert-box info" id="transactionNote" style="display: none;">
+                <div class="alert-content">
+                    <p><strong>Ghi chú:</strong> Giao dịch này đã được xác nhận và không thể hoàn tác.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="transaction-modal-footer">
+            <button class="btn btn-outline" onclick="closeTransactionModal()">Đóng</button>
+            <button class="btn btn-primary" onclick="printTransaction()">In hóa đơn</button>
+            <button class="btn btn-danger" onclick="refundTransaction()" id="refundBtn" style="display: none;">Hoàn tiền</button>
+        </div>
+    </div>
+
+	<script>
+		function toggleSidebar() {
+			document.getElementById('sidebar').classList.toggle('show');
+		}
+
+		function toggleCollapse() {
+			const menu = document.getElementById('collapseMenu');
+			menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+		}
+
+		function exportTransactions() {
+			alert('Xuất báo cáo giao dịch...');
+		}
+
+		function refreshTransactionList() {
+			alert('Đang làm mới danh sách...');
+		}
+
+		function applyFilter() {
+			alert('Đang áp dụng bộ lọc...');
+		}
+
+		function viewTransaction(id) {
+			alert('Xem chi tiết giao dịch: ' + id);
+		}
+
+		function retryTransaction(id) {
+			if(confirm('Bạn có muốn thử lại giao dịch ' + id + '?')) {
+				alert('Đang thử lại giao dịch: ' + id);
+			}
+		}
+		// Active menu handling
+		document.addEventListener('DOMContentLoaded', function() {
+			const navLinks = document.querySelectorAll('.sidebar__nav-link');
+			const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+			
+			// Set active based on current page
+			navLinks.forEach(link => {
+				const href = link.getAttribute('href');
+				if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+					link.classList.add('sidebar__nav-link--active');
+				} else {
+					link.classList.remove('sidebar__nav-link--active');
+				}
+			});
+			
+			// Handle click events
+			navLinks.forEach(link => {
+				link.addEventListener('click', function(e) {
+					navLinks.forEach(l => l.classList.remove('sidebar__nav-link--active'));
+					this.classList.add('sidebar__nav-link--active');
+				});
+			});
+		});
+	</script>
+	<script src="js/manage_transaction.js"></script>
+</body>
+</html>

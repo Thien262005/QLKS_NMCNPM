@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quản Lý Phòng - やばい</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/room.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="logo">
+      <h2><i class="fas fa-crown"></i> やばい</h2>
+      <p>Quản Lý Khách Sạn</p>
+    </div>
+    <ul class="menu">
+      <li class="menu-item">
+        <a href="index.html" class="menu-link">
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="bookings.html" class="menu-link">
+          <span>Đơn Đặt Phòng</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="rooms.html" class="menu-link active">
+          <span>Quản Lý Phòng</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="pricing.html" class="menu-link">
+          <span>Giá & Khuyến Mãi</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="reviews.html" class="menu-link">
+          <span>Đánh Giá</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="reports.html" class="menu-link">
+          <span>Báo Cáo</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="settings.html" class="menu-link">
+          <i class="fas fa-cog"></i>
+          <span>Cài Đặt</span>
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <div class="header">
+      <h1 class="welcome">Quản Lý Phòng</h1>
+      <div class="user-info">
+        <div class="user-avatar">AD</div>
+        <div>
+          <div style="font-weight: 600; color: #333">Admin User</div>
+          <div style="font-size: 0.85rem; color: #666">Chủ khách sạn</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-title">Tổng Số Phòng</div>
+          <div class="stat-icon blue">
+            <i class="fas fa-door-open"></i>
+          </div>
+        </div>
+        <div class="stat-value">150</div>
+        <div class="stat-change">
+          <i class="fas fa-info-circle"></i> Phòng
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-title">Phòng Trống</div>
+          <div class="stat-icon green">
+            <i class="fas fa-check-circle"></i>
+          </div>
+        </div>
+        <div class="stat-value">45</div>
+        <div class="stat-change">
+          <i class="fas fa-arrow-up"></i> Sẵn sàng đón khách
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-title">Đã Đặt</div>
+          <div class="stat-icon orange">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+        </div>
+        <div class="stat-value">92</div>
+        <div class="stat-change">
+          <i class="fas fa-info-circle"></i> Đang có khách
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-title">Bảo Trì</div>
+          <div class="stat-icon purple">
+            <i class="fas fa-tools"></i>
+          </div>
+        </div>
+        <div class="stat-value">13</div>
+        <div class="stat-change">
+          <i class="fas fa-wrench"></i> Đang sửa chữa
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <i class="fas fa-bed"></i>
+          Danh Sách Phòng
+        </h2>
+        <button class="btn btn-primary" onclick="alert('Thêm phòng mới')">
+          <i class="fas fa-plus"></i>
+          Thêm Phòng Mới
+        </button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Mã Phòng</th>
+            <th>Loại Phòng</th>
+            <th>Giá/Đêm</th>
+            <th>Trạng Thái</th>
+            <th>Tầng</th>
+            <th>Sức Chứa</th>
+            <th>Hành Động</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>R101</strong></td>
+            <td>Deluxe King</td>
+            <td><strong>2.500.000đ</strong></td>
+            <td><span class="status-badge status-active">Trống</span></td>
+            <td>Tầng 1</td>
+            <td>2 người</td>
+            <td>
+              <div class="action-btns">
+                <button class="btn btn-sm btn-edit">
+                  <i class="fas fa-edit"></i> Sửa
+                </button>
+                <button class="btn btn-sm btn-delete">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>R102</strong></td>
+            <td>Suite Executive</td>
+            <td><strong>4.500.000đ</strong></td>
+            <td><span class="status-badge status-booked">Đã đặt</span></td>
+            <td>Tầng 1</td>
+            <td>4 người</td>
+            <td>
+              <div class="action-btns">
+                <button class="btn btn-sm btn-edit">
+                  <i class="fas fa-edit"></i> Sửa
+                </button>
+                <button class="btn btn-sm btn-delete">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>R103</strong></td>
+            <td>Deluxe King</td>
+            <td><strong>2.500.000đ</strong></td>
+            <td><span class="status-badge status-pending">Bảo trì</span></td>
+            <td>Tầng 1</td>
+            <td>2 người</td>
+            <td>
+              <div class="action-btns">
+                <button class="btn btn-sm btn-edit">
+                  <i class="fas fa-edit"></i> Sửa
+                </button>
+                <button class="btn btn-sm btn-delete">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>R201</strong></td>
+            <td>Deluxe King</td>
+            <td><strong>2.500.000đ</strong></td>
+            <td><span class="status-badge status-active">Trống</span></td>
+            <td>Tầng 2</td>
+            <td>2 người</td>
+            <td>
+              <div class="action-btns">
+                <button class="btn btn-sm btn-edit">
+                  <i class="fas fa-edit"></i> Sửa
+                </button>
+                <button class="btn btn-sm btn-delete">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>R202</strong></td>
+            <td>Suite Executive</td>
+            <td><strong>4.500.000đ</strong></td>
+            <td><span class="status-badge status-booked">Đã đặt</span></td>
+            <td>Tầng 2</td>
+            <td>4 người</td>
+            <td>
+              <div class="action-btns">
+                <button class="btn btn-sm btn-edit">
+                  <i class="fas fa-edit"></i> Sửa
+                </button>
+                <button class="btn btn-sm btn-delete">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>P001</strong></td>
+            <td>Presidential Suite</td>
+            <td><strong>12.000.000đ</strong></td>
+            <td><span class="status-badge status-active">Trống</span></td>
+            <td>Penthouse</td>
+            <td>8 người</td>
+            <td>
+              <div class="action-btns">
+                <button class="btn btn-sm btn-edit">
+                  <i class="fas fa-edit"></i> Sửa
+                </button>
+                <button class="btn btn-sm btn-delete">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+  <!-- Modal Overlay -->
+    <div id="roomModalOverlay" class="room-modal-overlay" onclick="closeRoomModal()"></div>
+
+    <!-- Add/Edit Room Modal -->
+    <div id="roomFormModal" class="room-modal">
+        <div class="room-modal-header">
+            <h2 class="room-modal-title" id="roomModalTitle">
+                <i class="fas fa-plus-circle"></i>
+                Thêm Phòng Mới
+            </h2>
+            <button class="room-modal-close" onclick="closeRoomModal()">×</button>
+        </div>
+
+        <div class="room-modal-body">
+            <form id="roomForm">
+                <!-- Basic Information -->
+                <h3 style="margin-bottom: 20px; color: #333; font-size: 18px;">
+                    <i class="fas fa-info-circle" style="color: #667eea;"></i>
+                    Thông tin cơ bản
+                </h3>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Mã Phòng <span>*</span></label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-door-open"></i>
+                            <input type="text" class="form-control" id="roomCode" placeholder="Ví dụ: R101" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Loại Phòng <span>*</span></label>
+                        <select class="form-control" id="roomType" required>
+                            <option value="">-- Chọn loại phòng --</option>
+                            <option value="standard">Standard Room</option>
+                            <option value="deluxe">Deluxe King</option>
+                            <option value="suite">Suite Executive</option>
+                            <option value="presidential">Presidential Suite</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Giá/Đêm (VNĐ) <span>*</span></label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                            <input type="number" class="form-control" id="roomPrice" placeholder="2500000" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Trạng Thái <span>*</span></label>
+                        <select class="form-control" id="roomStatus" required>
+                            <option value="available">Trống</option>
+                            <option value="booked">Đã đặt</option>
+                            <option value="maintenance">Bảo trì</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Tầng <span>*</span></label>
+                        <select class="form-control" id="roomFloor" required>
+                            <option value="">-- Chọn tầng --</option>
+                            <option value="1">Tầng 1</option>
+                            <option value="2">Tầng 2</option>
+                            <option value="3">Tầng 3</option>
+                            <option value="4">Tầng 4</option>
+                            <option value="5">Tầng 5</option>
+                            <option value="penthouse">Penthouse</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Sức Chứa <span>*</span></label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-users"></i>
+                            <input type="number" class="form-control" id="roomCapacity" placeholder="2" min="1" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Diện Tích (m²)</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-expand"></i>
+                            <input type="number" class="form-control" id="roomSize" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Số Giường</label>
+                        <select class="form-control" id="bedType">
+                            <option value="1-king">1 King Bed</option>
+                            <option value="1-queen">1 Queen Bed</option>
+                            <option value="2-single">2 Single Beds</option>
+                            <option value="2-double">2 Double Beds</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="form-group full-width">
+                    <label>Mô Tả Phòng</label>
+                    <textarea class="form-control" id="roomDescription" placeholder="Mô tả chi tiết về phòng..."></textarea>
+                </div>
+
+                <!-- Amenities -->
+                <h3 style="margin: 30px 0 20px; color: #333; font-size: 18px;">
+                    <i class="fas fa-star" style="color: #667eea;"></i>
+                    Tiện nghi
+                </h3>
+
+                <div class="amenities-grid">
+                    <div class="amenity-item">
+                        <input type="checkbox" id="wifi" checked>
+                        <label for="wifi">WiFi miễn phí</label>
+                    </div>
+                    <div class="amenity-item">
+                        <input type="checkbox" id="tv" checked>
+                        <label for="tv">TV màn hình phẳng</label>
+                    </div>
+                    <div class="amenity-item">
+                        <input type="checkbox" id="ac" checked>
+                        <label for="ac">Điều hòa</label>
+                    </div>
+                    <div class="amenity-item">
+                        <input type="checkbox" id="minibar" checked>
+                        <label for="minibar">Minibar</label>
+                    </div>
+                    <div class="amenity-item">
+                        <input type="checkbox" id="safe">
+                        <label for="safe">Két an toàn</label>
+                    </div>
+                    <div class="amenity-item">
+                        <input type="checkbox" id="balcony">
+                        <label for="balcony">Ban công</label>
+                    </div>
+                    <div class="amenity-item">
+                        <input type="checkbox" id="bathtub">
+                        <label for="bathtub">Bồn tắm</label>
+                    </div>
+                    <div class="amenity-item">
+                        <input type="checkbox" id="shower">
+                        <label for="shower">Vòi sen</label>
+                    </div>
+                    <div class="amenity-item">
+                        <input type="checkbox" id="hairdryer">
+                        <label for="hairdryer">Máy sấy tóc</label>
+                    </div>
+                </div>
+
+                <!-- Images -->
+                <h3 style="margin: 30px 0 20px; color: #333; font-size: 18px;">
+                    <i class="fas fa-images" style="color: #667eea;"></i>
+                    Hình ảnh phòng
+                </h3>
+
+                <div class="image-upload-area" onclick="document.getElementById('roomImages').click()">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p style="margin-bottom: 5px; font-weight: 600;">Kéo thả ảnh vào đây hoặc click để chọn</p>
+                    <p style="font-size: 12px;">Hỗ trợ: JPG, PNG (tối đa 5MB/ảnh)</p>
+                    <input type="file" id="roomImages" accept="image/*" multiple>
+                </div>
+
+                <div class="image-preview" id="imagePreview">
+                    <!-- Preview images will be shown here -->
+                </div>
+            </form>
+        </div>
+
+        <div class="room-modal-footer">
+            <button class="btn btn-outline" onclick="closeRoomModal()">Hủy</button>
+            <button class="btn btn-success" onclick="saveRoom()">
+                <i class="fas fa-save"></i> Lưu Phòng
+            </button>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteRoomModal" class="room-modal delete-modal">
+        <div class="room-modal-header" style="background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);">
+            <h2 class="room-modal-title">
+                <i class="fas fa-exclamation-triangle"></i>
+                Xác Nhận Xóa Phòng
+            </h2>
+            <button class="room-modal-close" onclick="closeDeleteModal()">×</button>
+        </div>
+
+        <div class="delete-modal-body">
+            <div class="delete-icon">
+                <i class="fas fa-trash-alt"></i>
+            </div>
+            <h3>Bạn có chắc muốn xóa phòng này?</h3>
+            <p>Hành động này không thể hoàn tác. Tất cả dữ liệu liên quan đến phòng sẽ bị xóa vĩnh viễn.</p>
+            
+            <div class="room-info-box">
+                <strong>Phòng:</strong> <span id="deleteRoomInfo">R101 - Deluxe King</span>
+            </div>
+        </div>
+
+        <div class="room-modal-footer">
+            <button class="btn btn-outline" onclick="closeDeleteModal()">Hủy</button>
+            <button class="btn" style="background: linear-gradient(45deg, #dc3545, #c82333); color: white;" onclick="confirmDeleteRoom()">
+                <i class="fas fa-trash"></i> Xóa Phòng
+            </button>
+        </div>
+    </div>
+    <script src="js/room.js"></script>
+</body>
+</html>
