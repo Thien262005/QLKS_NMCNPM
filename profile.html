@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hồ Sơ Của Tôi - やばい</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/profile.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation"></div>
+    <div class="particles">
+        <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
+        <div class="particle" style="left: 30%; animation-delay: 4s;"></div>
+        <div class="particle" style="left: 40%; animation-delay: 1s;"></div>
+        <div class="particle" style="left: 50%; animation-delay: 3s;"></div>
+        <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
+        <div class="particle" style="left: 70%; animation-delay: 2s;"></div>
+        <div class="particle" style="left: 80%; animation-delay: 4s;"></div>
+        <div class="particle" style="left: 90%; animation-delay: 0s;"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-crown"></i>
+                やばい
+            </a>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Trang Chủ</a></li>
+                    <li><a href="booking.html" class="nav-link">Đặt Phòng</a></li>
+                    <li><a href="my-bookings.html" class="nav-link">Đơn Của Tôi</a></li>
+                    <li><a href="hotel-detail.html" class="nav-link">Khách Sạn</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons">
+                <a href="profile.html" class="btn btn-outline">
+                    <i class="fas fa-user"></i> Hồ Sơ
+                </a>
+                <a href="index.html" class="btn btn-primary">
+                    <i class="fas fa-sign-out-alt"></i> Đăng Xuất
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Profile Container -->
+    <div class="profile-container">
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <div class="profile-header-content">
+                <div class="profile-avatar-large">
+                    NVA
+                    <div class="avatar-upload-btn" onclick="document.getElementById('avatarUpload').click()">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <input type="file" id="avatarUpload" style="display: none;" accept="image/*" onchange="handleAvatarUpload(event)">
+                </div>
+                <div class="profile-info">
+                    <h1 class="profile-name">Nguyễn Văn An</h1>
+                    <div class="profile-email">
+                        <i class="fas fa-envelope"></i> nguyenvana@email.com
+                    </div>
+                    <div class="profile-member-since">
+                        <i class="fas fa-calendar-alt"></i> Thành viên từ: Tháng 1, 2023
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-stats">
+                <div class="stat-item">
+                    <div class="stat-number">24</div>
+                    <div class="stat-label">Đặt Phòng</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Đánh Giá</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2,450</div>
+                    <div class="stat-label">Điểm Thưởng</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Content -->
+        <div class="profile-content">
+            <!-- Sidebar -->
+            <div class="profile-sidebar">
+                <ul class="sidebar-menu">
+                    <li><a href="#" class="active" onclick="showSection('profile'); return false;">
+                        <i class="fas fa-user"></i>
+                        <span>Thông Tin Cá Nhân</span>
+                    </a></li>
+                    <li><a href="#" onclick="showSection('loyalty'); return false;">
+                        <i class="fas fa-star"></i>
+                        <span>Điểm Thưởng</span>
+                    </a></li>
+                    <li><a href="#" onclick="showSection('notifications'); return false;">
+                        <i class="fas fa-bell"></i>
+                        <span>Thông Báo</span>
+                    </a></li>
+                    <li><a href="my-bookings.html">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Đơn Đặt Phòng</span>
+                    </a></li>
+                    <li><a href="#" onclick="showSection('favorites'); return false;">
+                        <i class="fas fa-heart"></i>
+                        <span>Yêu Thích</span>
+                    </a></li>
+                    <li><a href="#" onclick="showSection('security'); return false;">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Bảo Mật</span>
+                    </a></li>
+                    <li><a href="#" onclick="showSection('settings'); return false;">
+                        <i class="fas fa-cog"></i>
+                        <span>Cài Đặt</span>
+                    </a></li>
+                    <li><a href="index.html" style="color: #dc3545;">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Đăng Xuất</span>
+                    </a></li>
+                </ul>
+            </div>
+
+            <!-- Main Content -->
+            <div class="profile-main">
+                <!-- Profile Section -->
+                <div id="profileSection" class="content-section active">
+                    <h2 class="section-title">
+                        <i class="fas fa-user-edit"></i>
+                        Thông Tin Cá Nhân
+                    </h2>
+                    
+                    <form id="profileForm" onsubmit="saveProfile(event)">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Họ và Tên <span style="color: #dc3545;">*</span></label>
+                                <input type="text" class="form-control" value="Nguyễn Văn An" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email <span style="color: #dc3545;">*</span></label>
+                                <input type="email" class="form-control" value="nguyenvana@email.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Số Điện Thoại</label>
+                                <input type="tel" class="form-control" value="0901234567">
+                            </div>
+                            <div class="form-group">
+                                <label>Ngày Sinh</label>
+                                <input type="date" class="form-control" value="1990-05-15">
+                            </div>
+                            <div class="form-group">
+                                <label>Giới Tính</label>
+                                <select class="form-control">
+                                    <option value="male" selected>Nam</option>
+                                    <option value="female">Nữ</option>
+                                    <option value="other">Khác</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Quốc Tịch</label>
+                                <select class="form-control">
+                                    <option value="vn" selected>Việt Nam</option>
+                                    <option value="us">United States</option>
+                                    <option value="kr">Korea</option>
+                                    <option value="jp">Japan</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label>Địa Chỉ</label>
+                                <input type="text" class="form-control" value="280 An Dương Vương, Quận 5, TP.HCM">
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i>
+                                Lưu Thay Đổi
+                            </button>
+                            <button type="reset" class="btn btn-outline">
+                                <i class="fas fa-undo"></i>
+                                Đặt Lại
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Change Password Section -->
+                    <div class="password-section">
+                        <h3>
+                            <i class="fas fa-lock"></i>
+                            Đổi Mật Khẩu
+                        </h3>
+                        <form id="passwordForm" onsubmit="changePassword(event)">
+                            <div class="form-grid">
+                                <div class="form-group full-width">
+                                    <label>Mật Khẩu Hiện Tại</label>
+                                    <input type="password" class="form-control" placeholder="Nhập mật khẩu hiện tại" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Mật Khẩu Mới</label>
+                                    <input type="password" id="newPassword" class="form-control" placeholder="Nhập mật khẩu mới" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Xác Nhận Mật Khẩu</label>
+                                    <input type="password" id="confirmPassword" class="form-control" placeholder="Nhập lại mật khẩu mới" required>
+                                </div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-key"></i>
+                                    Đổi Mật Khẩu
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Loyalty Section -->
+                <div id="loyaltySection" class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-star"></i>
+                        Chương Trình Thành Viên
+                    </h2>
+
+                    <div class="loyalty-card">
+                        <div class="loyalty-header">
+                            <div class="loyalty-tier">
+                                <i class="fas fa-crown"></i>
+                                GOLD MEMBER
+                            </div>
+                            <div class="loyalty-points">
+                                <div class="points-number">2,450</div>
+                                <div class="points-label">Điểm thưởng</div>
+                            </div>
+                        </div>
+                        <div class="loyalty-progress">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span style="font-size: 14px;">Tiến độ lên Platinum</span>
+                                <span style="font-size: 14px; font-weight: 600;">550 điểm nữa</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 82%;"></div>
+                            </div>
+                            <div class="progress-label">2,450 / 3,000 điểm</div>
+                        </div>
+                    </div>
+
+                    <div class="benefits-section">
+                        <h3><i class="fas fa-gift"></i> Quyền Lợi Thành Viên</h3>
+                        <div class="benefits-grid">
+                            <div class="benefit-card">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-percentage"></i>
+                                </div>
+                                <h4>Giảm giá 10%</h4>
+                                <p>Cho tất cả đặt phòng</p>
+                            </div>
+                            <div class="benefit-card">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <h4>Check-out muộn</h4>
+                                <p>Đến 14:00 miễn phí</p>
+                            </div>
+                            <div class="benefit-card">
+                                <div class="benefit-icon">
+                                    <i class="fas fa-concierge-bell"></i>
+                                </div>
+                                <h4>Room Upgrade</h4>
+                                <p>Khi có sẵn phòng</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notifications Section -->
+                <div id="notificationsSection" class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-bell"></i>
+                        Thông Báo
+                    </h2>
+
+                    <div class="notification-item">
+                        <div class="notification-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="notification-content">
+                            <div class="notification-title">Đặt phòng thành công!</div>
+                            <div class="notification-text">
+                                Đơn đặt phòng #BK2025001 tại Grand Hotel đã được xác nhận. Check-in: 25/11/2025
+                            </div>
+                            <div class="notification-time">
+                                <i class="fas fa-clock"></i> 2 giờ trước
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notification-item">
+                        <div class="notification-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <div class="notification-content">
+                            <div class="notification-title">Ưu đãi đặc biệt!</div>
+                            <div class="notification-text">
+                                Giảm 20% cho đặt phòng cuối tuần. Áp dụng từ 22-24/11. Đặt ngay!
+                            </div>
+                            <div class="notification-time">
+                                <i class="fas fa-clock"></i> 1 ngày trước
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notification-item">
+                        <div class="notification-icon" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="notification-content">
+                            <div class="notification-title">Bạn nhận được 150 điểm thưởng!</div>
+                            <div class="notification-text">
+                                Cảm ơn bạn đã hoàn thành chuyến đi. Tổng điểm: 2,450 điểm.
+                            </div>
+                            <div class="notification-time">
+                                <i class="fas fa-clock"></i> 3 ngày trước
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Favorites Section -->
+                <div id="favoritesSection" class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-heart"></i>
+                        Khách Sạn Yêu Thích
+                    </h2>
+                    <div class="favorites-grid">
+                        <div class="favorite-card">
+                            <div class="favorite-image" style="background: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400') center/cover;"></div>
+                            <div class="favorite-content">
+                                <h4>Grand Luxury Hotel</h4>
+                                <div class="favorite-location">
+                                    <i class="fas fa-map-marker-alt"></i> Quận 1, TP.HCM
+                                </div>
+                                <div class="favorite-rating">
+                                    <i class="fas fa-star"></i> 4.8 (245 đánh giá)
+                                </div>
+                                <div class="favorite-actions">
+                                    <a href="hotel-detail.html" class="btn btn-primary btn-sm">Xem Chi Tiết</a>
+                                    <button class="btn-favorite active"><i class="fas fa-heart"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security Section -->
+                <div id="securitySection" class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-shield-alt"></i>
+                        Bảo Mật Tài Khoản
+                    </h2>
+                    
+                    <div class="security-options">
+                        <div class="security-item">
+                            <div class="security-info">
+                                <h4><i class="fas fa-mobile-alt"></i> Xác thực hai yếu tố</h4>
+                                <p>Tăng cường bảo mật tài khoản với mã OTP</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="security-item">
+                            <div class="security-info">
+                                <h4><i class="fas fa-envelope"></i> Thông báo đăng nhập</h4>
+                                <p>Nhận email khi có đăng nhập mới</p>
+                            </div>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Section -->
+                <div id="settingsSection" class="content-section">
+                    <h2 class="section-title">
+                        <i class="fas fa-cog"></i>
+                        Cài Đặt
+                    </h2>
+                    
+                    <div class="settings-options">
+                        <div class="settings-group">
+                            <h3><i class="fas fa-bell"></i> Thông Báo</h3>
+                            <div class="settings-item">
+                                <span>Nhận email khuyến mãi</span>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="settings-item">
+                                <span>Nhận thông báo đặt phòng</span>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="settings-group">
+                            <h3><i class="fas fa-language"></i> Ngôn Ngữ & Khu Vực</h3>
+                            <div class="form-group">
+                                <label>Ngôn ngữ</label>
+                                <select class="form-control">
+                                    <option value="vi" selected>Tiếng Việt</option>
+                                    <option value="en">English</option>
+                                    <option value="ja">日本語</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Đơn vị tiền tệ</label>
+                                <select class="form-control">
+                                    <option value="vnd" selected>VND (₫)</option>
+                                    <option value="usd">USD ($)</option>
+                                    <option value="jpy">JPY (¥)</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>
+                    <i class="fas fa-crown"></i>
+                    やばい
+                </h3>
+                <p>Nền tảng đặt phòng khách sạn hàng đầu Việt Nam</p>
+            </div>
+            <div class="footer-section">
+                <h3>Liên Hệ</h3>
+                <p><i class="fas fa-phone"></i> Hotline: 111 (24/7)</p>
+                <p><i class="fas fa-envelope"></i> support@yabai.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 やばい. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/profile.js"></script>
+</body>
+</html>
