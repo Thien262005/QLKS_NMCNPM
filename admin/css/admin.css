@@ -696,12 +696,12 @@ body {
     display: inline-block;
 }
 
-/* Ion Icons placeholder styles */
+/* Ion Icons placeholder styles
 .ion-ios-keypad::before { content: "📊"; }
 .ion-ios-film::before { content: "🏨"; }
 .ion-ios-copy::before { content: "📋"; }
 .ion-md-arrow-dropdown::before { content: "▼"; }
-.ion-ios-log-out::before { content: "🚪"; }
+/*.ion-ios-log-out::before { content: "🚪"; }*/
 .ion-ios-refresh::before { content: "🔄"; }
 
 /* Utilities */
