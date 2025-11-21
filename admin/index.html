@@ -10,9 +10,7 @@
 </head>
 
 <body>
-	<button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('active'); document.querySelector('.sidebar-overlay').classList.toggle('active');">
-  <i class="fas fa-bars"></i>
-</button>
+
 <div class="sidebar-overlay" onclick="this.classList.remove('active'); document.querySelector('.sidebar').classList.remove('active');"></div>
 	<!-- header -->
 	<header class="header">
@@ -321,44 +319,73 @@
 	<!-- end main content -->
 
 	<script>
-		function toggleSidebar() {
-			document.getElementById("sidebar").classList.toggle("collapsed");
-		}
+    // 1. Hàm xử lý khi bấm nút 3 gạch
+    function toggleSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        const overlay = document.querySelector(".sidebar-overlay");
+        const screenWidth = window.innerWidth;
 
-		function refreshUserData() {
-			alert("Làm mới dữ liệu người dùng thành công!");
-		}
+        // Kiểm tra xem đang ở giao diện Mobile hay PC
+        if (screenWidth <= 768) {
+            // --- MOBILE ---
+            // Thêm/Bỏ class 'active' để trượt menu ra/vào
+            sidebar.classList.toggle("active");
+            
+            // Hiện/Ẩn lớp phủ đen mờ
+            if (overlay) {
+                overlay.classList.toggle("active");
+            }
+        } else {
+            // --- DESKTOP ---
+            // Thu nhỏ/Phóng to menu
+            sidebar.classList.toggle("collapsed");
+        }
+    }
 
-		function refreshHotelData() {
-			alert("Làm mới dữ liệu khách sạn thành công!");
-		}
+    // 2. Hàm ẩn menu khi click vào vùng đen mờ (Overlay) - Chỉ cho Mobile
+    document.addEventListener("DOMContentLoaded", function() {
+        const overlay = document.querySelector(".sidebar-overlay");
+        const sidebar = document.getElementById("sidebar");
 
-		function refreshBookingData() {
-			alert("Làm mới dữ liệu đặt phòng thành công!");
-		}
+        if (overlay) {
+            overlay.addEventListener("click", function() {
+                sidebar.classList.remove("active");
+                overlay.classList.remove("active");
+            });
+        }
+    });
 
-		document.addEventListener('DOMContentLoaded', function() {
-			const navLinks = document.querySelectorAll('.sidebar__nav-link');
-			const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-			
-			// Set active based on current page
-			navLinks.forEach(link => {
-				const href = link.getAttribute('href');
-				if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-					link.classList.add('sidebar__nav-link--active');
-				} else {
-					link.classList.remove('sidebar__nav-link--active');
-				}
-			});
-			
-			// Handle click events
-			navLinks.forEach(link => {
-				link.addEventListener('click', function(e) {
-					navLinks.forEach(l => l.classList.remove('sidebar__nav-link--active'));
-					this.classList.add('sidebar__nav-link--active');
-				});
-			});
-		});
-	</script>
+    // 3. Các hàm thông báo (giữ nguyên của bạn)
+    function refreshUserData() { alert("Làm mới dữ liệu người dùng thành công!"); }
+    function refreshHotelData() { alert("Làm mới dữ liệu khách sạn thành công!"); }
+    function refreshBookingData() { alert("Làm mới dữ liệu đặt phòng thành công!"); }
+
+    // 4. Xử lý Active Link (giữ nguyên logic của bạn)
+    document.addEventListener('DOMContentLoaded', function() {
+        const navLinks = document.querySelectorAll('.sidebar__nav-link');
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+                link.classList.add('sidebar__nav-link--active');
+            } else {
+                link.classList.remove('sidebar__nav-link--active');
+            }
+            
+            // Tự động đóng menu khi click link trên Mobile
+            link.addEventListener('click', function(e) {
+                navLinks.forEach(l => l.classList.remove('sidebar__nav-link--active'));
+                this.classList.add('sidebar__nav-link--active');
+
+                if (window.innerWidth <= 768) {
+                    document.getElementById("sidebar").classList.remove("active");
+                    const overlay = document.querySelector(".sidebar-overlay");
+                    if(overlay) overlay.classList.remove("active");
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>
