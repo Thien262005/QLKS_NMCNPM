@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quản Lý Giao Dịch - Chủ Khách Sạn</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/transactions.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <button class="close-sidebar-btn" onclick="document.querySelector('.sidebar').classList.remove('active'); document.querySelector('.sidebar-overlay').classList.remove('active');">
+        <i class="fas fa-times"></i>
+    </button>
+    <div class="logo">
+      <h2><i class="fas fa-crown"></i> やばい</h2>
+      <p>Quản Lý Khách Sạn</p>
+    </div>
+    <ul class="menu">
+      <li class="menu-item">
+        <a href="index.html" class="menu-link">
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="bookings.html" class="menu-link">
+          <span>Đơn Đặt Phòng</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="rooms.html" class="menu-link">
+          <span>Quản Lý Phòng</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="pricing.html" class="menu-link">
+          <span>Giá & Khuyến Mãi</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="reviews.html" class="menu-link">
+          <span>Đánh Giá</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="reports.html" class="menu-link">
+          <span>Báo Cáo</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="transactions.html" class="menu-link active">
+          <span>Giao Dịch</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link" onclick="toggleSubmenu(event, 'auth-submenu')">
+            <i class="fas fa-user-shield"></i>
+            <span>Quản lý phân quyền</span>
+            <i class="fas fa-chevron-down arrow"></i>
+        </a>
+        <ul id="auth-submenu" class="submenu">
+            <li>
+                <a href="roles.html" class="submenu-link">
+                    <i class="fas fa-users-cog"></i> Vai trò
+                </a>
+            </li>
+            <li>
+                <a href="permissions.html" class="submenu-link">
+                    <i class="fas fa-lock"></i> Phân quyền
+                </a>
+            </li>
+        </ul>
+    </li>
+      <li class="menu-item">
+    <a href="chat.html" class="menu-link"> <i class="fas fa-comments"></i>
+        <span>Tư vấn khách hàng</span>
+        <span class="badge-counter" style="background: #ff4757; color: white; font-size: 0.7rem; padding: 2px 6px; border-radius: 10px; margin-left: auto;">3</span>
+    </a>
+</li>
+      <li class="menu-item">
+        <a href="settings.html" class="menu-link">
+          <i class="fas fa-cog"></i>
+          <span>Cài Đặt</span>
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <div class="header">
+        <button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('active'); document.querySelector('.sidebar-overlay').classList.toggle('active');">
+      <i class="fas fa-bars"></i>
+    </button>
+      <h1 class="welcome">Quản lý giao dịch</h1>
+      <div class="user-info">
+        <button class="btn btn-primary" onclick="alert('Xuất báo cáo thành công!')">
+            <i class="fas fa-download"></i> Xuất Excel
+        </button>
+        <div class="user-avatar">AD</div>
+        <div>
+            <div style="font-weight: 600; color: #333">Admin User</div>
+            <div style="font-size: 0.85rem; color: #666">Chủ khách sạn</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-title">Tổng Doanh Thu</div>
+          <div class="stat-icon blue"><i class="fas fa-wallet"></i></div>
+        </div>
+        <div class="stat-value">245.5M</div>
+        <div class="stat-change"><i class="fas fa-arrow-up"></i> +12.5% tháng này</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-title">Số Giao Dịch</div>
+          <div class="stat-icon purple"><i class="fas fa-receipt"></i></div>
+        </div>
+        <div class="stat-value">3,452</div>
+        <div class="stat-change">Tổng số giao dịch</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-title">Thành Công</div>
+          <div class="stat-icon green"><i class="fas fa-check-circle"></i></div>
+        </div>
+        <div class="stat-value">98.1%</div>
+        <div class="stat-change">Tỷ lệ thành công</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-header">
+          <div class="stat-title">Cần Xử Lý</div>
+          <div class="stat-icon orange"><i class="fas fa-exclamation-circle"></i></div>
+        </div>
+        <div class="stat-value">12</div>
+        <div class="stat-change negative">Giao dịch lỗi/treo</div>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <div class="section-header">
+        <h2 class="section-title"><i class="fas fa-filter"></i> Bộ lọc & Tìm kiếm</h2>
+      </div>
+      <div class="filter-container">
+        <div class="form-group search-group">
+            <input type="text" placeholder="Tìm mã GD, tên khách...">
+            <i class="fas fa-search search-icon"></i>
+        </div>
+        <div class="form-group">
+            <select>
+                <option value="all">Tất cả trạng thái</option>
+                <option value="success">Thành công</option>
+                <option value="pending">Đang xử lý</option>
+                <option value="failed">Thất bại</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <select>
+                <option value="all">Phương thức thanh toán</option>
+                <option value="card">Thẻ tín dụng</option>
+                <option value="banking">Chuyển khoản</option>
+                <option value="momo">MoMo</option>
+                <option value="momo">ZaloPay</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="date">
+        </div>
+        <button class="btn btn-primary">Áp dụng</button>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <div class="section-header">
+        <h2 class="section-title">Danh sách giao dịch</h2>
+        <a href="#" onclick="alert('Làm mới dữ liệu')" class="refresh-btn"><i class="fas fa-sync-alt"></i></a>
+      </div>
+      
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Mã GD</th>
+              <th>Booking</th>
+              <th>Khách Hàng</th>
+              <th>Số Tiền</th>
+              <th>Phương Thức</th>
+              <th>Thời Gian</th>
+              <th>Trạng Thái</th>
+              <th>Hành Động</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>#TXN54321</strong></td>
+              <td>#BK3847</td>
+              <td>Nguyễn Văn A</td>
+              <td class="amount-success">3,000,000 đ</td>
+              <td><span class="method-badge"><i class="far fa-credit-card"></i> Thẻ tín dụng</span></td>
+              <td>15/01/2025 14:35</td>
+              <td><span class="status-badge status-active">Thành công</span></td>
+              <td>
+                <button class="btn btn-sm btn-primary" onclick="viewTransaction('TXN54321')">Chi tiết</button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>#TXN54320</strong></td>
+              <td>#BK3846</td>
+              <td>Trần Thị B</td>
+              <td class="amount-success">7,500,000 đ</td>
+              <td><span class="method-badge"><i class="fas fa-university"></i> Chuyển khoản</span></td>
+              <td>14/01/2025 10:22</td>
+              <td><span class="status-badge status-active">Thành công</span></td>
+              <td>
+                <button class="btn btn-sm btn-primary" onclick="viewTransaction('TXN54320')">Chi tiết</button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>#TXN54316</strong></td>
+              <td>#BK3842</td>
+              <td>Võ Thị F</td>
+              <td class="amount-failed">4,200,000 đ</td>
+              <td><span class="method-badge"><i class="fas fa-university"></i> Chuyển khoản</span></td>
+              <td>20/12/2024 15:20</td>
+              <td><span class="status-badge status-cancelled">Thất bại</span></td>
+              <td>
+                <button class="btn btn-sm btn-primary" onclick="viewTransaction('TXN54316')">Chi tiết</button>
+                <button class="btn btn-sm btn-delete" onclick="alert('Thử lại...')"><i class="fas fa-redo"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination-container">
+          <span>Hiển thị 1-3 của 3,452</span>
+          <div class="pagination-btns">
+              <button class="btn-page disabled"><i class="fas fa-chevron-left"></i></button>
+              <button class="btn-page active">1</button>
+              <button class="btn-page">2</button>
+              <button class="btn-page">...</button>
+              <button class="btn-page"><i class="fas fa-chevron-right"></i></button>
+          </div>
+      </div>
+    </div>
+
+    <div class="reports-grid">
+        <div class="content-section" style="margin-bottom: 0;">
+            <div class="section-header">
+                <h2 class="section-title">Phương thức thanh toán</h2>
+            </div>
+            <table class="report-table">
+                <thead>
+                    <tr>
+                        <th>Phương thức</th>
+                        <th class="text-right">Số GD</th>
+                        <th class="text-right">Tổng tiền</th>
+                        <th class="text-right">Tỷ lệ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><i class="far fa-credit-card"></i> Thẻ tín dụng</td>
+                        <td class="text-right">1,245</td>
+                        <td class="text-right">48.5M</td>
+                        <td class="text-right"><span class="percent-badge">38.5%</span></td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-university"></i> Chuyển khoản</td>
+                        <td class="text-right">1,058</td>
+                        <td class="text-right">42.3M</td>
+                        <td class="text-right"><span class="percent-badge">33.6%</span></td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-wallet"></i> MoMo</td>
+                        <td class="text-right">685</td>
+                        <td class="text-right">22.0M</td>
+                        <td class="text-right"><span class="percent-badge">17.5%</span></td>
+                    </tr>
+                    <tr>
+                        <td><i class="fas fa-mobile-alt"></i> ZaloPay</td>
+                        <td class="text-right">464</td>
+                        <td class="text-right">13.0M</td>
+                        <td class="text-right"><span class="percent-badge">10.4%</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="content-section" style="margin-bottom: 0;">
+            <div class="section-header">
+                <h2 class="section-title">Tỷ lệ trạng thái</h2>
+            </div>
+            <div class="status-summary-list">
+                <div class="status-summary-item">
+                    <div class="flex-between">
+                        <span><i class="fas fa-check-circle success-text"></i> Thành công</span>
+                        <span class="bold">98.1%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill success" style="width: 98.1%"></div>
+                    </div>
+                </div>
+                <div class="status-summary-item">
+                    <div class="flex-between">
+                        <span><i class="fas fa-spinner warning-text"></i> Đang xử lý</span>
+                        <span class="bold">0.5%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill warning" style="width: 5%"></div>
+                    </div>
+                </div>
+                <div class="status-summary-item">
+                    <div class="flex-between">
+                        <span><i class="fas fa-times-circle danger-text"></i> Thất bại</span>
+                        <span class="bold">1.2%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill danger" style="width: 1.2%"></div>
+                    </div>
+                </div>
+                <div class="status-summary-item">
+                    <div class="flex-between">
+                        <span><i class="fas fa-undo-alt muted-text"></i> Đã hoàn tiền</span>
+                        <span class="bold">0.2%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill muted" style="width: 0.2%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section full-width-grid-item">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fas fa-history"></i> Hoạt động giao dịch gần đây</h2>
+            </div>
+            <div class="activity-list">
+                <div class="activity-item success">
+                    <div class="activity-icon"><i class="fas fa-check"></i></div>
+                    <div class="activity-content">
+                        <div class="activity-title">Giao dịch thành công <span class="time">1 phút trước</span></div>
+                        <div class="activity-desc">#TXN54321 - Nguyễn Văn A thanh toán 3,000,000 VNĐ qua Thẻ tín dụng</div>
+                    </div>
+                </div>
+                <div class="activity-item success">
+                    <div class="activity-icon"><i class="fas fa-check"></i></div>
+                    <div class="activity-content">
+                        <div class="activity-title">Giao dịch thành công <span class="time">8 phút trước</span></div>
+                        <div class="activity-desc">#TXN54320 - Trần Thị B thanh toán 7,500,000 VNĐ qua Chuyển khoản</div>
+                    </div>
+                </div>
+                <div class="activity-item failed">
+                    <div class="activity-icon"><i class="fas fa-times"></i></div>
+                    <div class="activity-content">
+                        <div class="activity-title">Giao dịch thất bại <span class="time">25 phút trước</span></div>
+                        <div class="activity-desc">#TXN54316 - Võ Thị F - Lý do: Số dư không đủ</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </main>
+
+  <div id="transactionModalOverlay" class="transaction-modal-overlay" onclick="closeTransactionModal()"></div>
+
+  <div id="transactionDetailModal" class="transaction-modal">
+    <div class="transaction-modal-header owner-style">
+        <h2 class="transaction-modal-title">
+            <i class="fas fa-file-invoice-dollar"></i> Chi tiết giao dịch
+        </h2>
+        <button class="transaction-modal-close" onclick="closeTransactionModal()">×</button>
+    </div>
+
+    <div class="transaction-modal-body">
+        <div class="transaction-status-banner success" id="transactionStatusBanner">
+            <span><i class="fas fa-check-circle"></i> Giao dịch thành công</span>
+        </div>
+
+        <div class="transaction-info-grid">
+            <div class="transaction-info-item">
+                <div class="transaction-info-label">Mã giao dịch</div>
+                <div class="transaction-info-value" id="txnId">#TXN54321</div>
+            </div>
+            <div class="transaction-info-item">
+                <div class="transaction-info-label">Mã đặt phòng</div>
+                <div class="transaction-info-value" id="bookingId">#BK3847</div>
+            </div>
+            <div class="transaction-info-item">
+                <div class="transaction-info-label">Số tiền</div>
+                <div class="transaction-info-value highlight-text" id="amount">3,000,000 VNĐ</div>
+            </div>
+            <div class="transaction-info-item">
+                <div class="transaction-info-label">Thời gian</div>
+                <div class="transaction-info-value" id="txnTime">15/01/2025 14:35</div>
+            </div>
+        </div>
+
+        <div class="modal-row-split">
+            <div class="transaction-section">
+                <h3 class="transaction-section-title"><i class="fas fa-user"></i> Khách hàng</h3>
+                <div class="transaction-detail-list">
+                    <div class="transaction-detail-row">
+                        <span class="label">Họ tên:</span> <span id="customerName">Nguyễn Văn A</span>
+                    </div>
+                    <div class="transaction-detail-row">
+                        <span class="label">Email:</span> <span id="customerEmail">abc@email.com</span>
+                    </div>
+                    <div class="transaction-detail-row">
+                        <span class="label">SĐT:</span> <span id="customerPhone">0901234567</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="transaction-section">
+                <h3 class="transaction-section-title"><i class="fas fa-hotel"></i> Đặt phòng</h3>
+                <div class="transaction-detail-list">
+                    <div class="transaction-detail-row">
+                        <span class="label">Khách sạn:</span> <span id="hotelName">Grand Hotel</span>
+                    </div>
+                    <div class="transaction-detail-row">
+                        <span class="label">Loại phòng:</span> <span id="roomType">Deluxe</span>
+                    </div>
+                    <div class="transaction-detail-row">
+                        <span class="label">Thời gian:</span> 
+                        <span>
+                            <span id="checkin">20/01</span> - <span id="checkout">22/01</span>
+                            (<span id="nights">2 đêm</span>)
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="transaction-section">
+            <h3 class="transaction-section-title"><i class="fas fa-credit-card"></i> Thanh toán</h3>
+            <div class="transaction-detail-list full-width">
+                <div class="transaction-detail-row">
+                    <span class="label">Phương thức:</span> <span id="paymentMethod">Thẻ tín dụng</span>
+                </div>
+                <div class="transaction-detail-row">
+                    <span class="label">Mã thanh toán:</span> <span id="paymentCode">PAY123</span>
+                </div>
+                <hr style="margin: 10px 0; border: 0; border-top: 1px dashed #ddd;">
+                <div class="transaction-detail-row">
+                    <span class="label">Giá phòng:</span> <span id="roomPrice">2,800,000</span>
+                </div>
+                <div class="transaction-detail-row">
+                    <span class="label">Phí & Thuế:</span> 
+                    <span>Phí: <span id="serviceFee">150k</span> | VAT: <span id="vat">50k</span></span>
+                </div>
+                <div class="transaction-detail-row total-row">
+                    <span class="label">TỔNG CỘNG:</span> <span class="total-amount" id="totalAmount">3,000,000 VNĐ</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="transaction-section">
+            <h3 class="transaction-section-title"><i class="fas fa-history"></i> Lịch sử</h3>
+            <div class="transaction-timeline" id="transactionTimeline">
+                </div>
+        </div>
+    </div>
+
+    <div class="transaction-modal-footer">
+        <button class="btn btn-secondary" onclick="closeTransactionModal()">Đóng</button>
+        <button class="btn btn-primary" onclick="printTransaction()"><i class="fas fa-print"></i> In hóa đơn</button>
+        <button class="btn btn-delete" id="refundBtn" onclick="refundTransaction()" style="display: none;">Hoàn tiền</button>
+    </div>
+  </div>
+
+  <script src="js/transaction.js"></script>
+  <script src="js/role.js"></script>
+</body>
+</html>

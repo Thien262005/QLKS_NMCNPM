@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đơn Đặt Phòng - やばい</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="../css/my-bookings.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-crown"></i>
+                やばい
+            </a>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link"> Trang Chủ</a></li>
+                    <li><a href="booking.html" class="nav-link"> Đặt Phòng</a></li>
+                    <li><a href="my-bookings.html" class="nav-link"> Đơn Của Tôi </a></li>
+                    <li><a href="hotel-detail.html" class="nav-link"> Khách Sạn</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons">
+                <a href="login.html" class="btn btn-outline">
+                    Đăng Nhập
+                </a>
+                <a href="register.html" class="btn btn-primary">
+                    Đăng Ký
+                </a>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">
+                <i class="fas fa-list-alt"></i>
+                Đơn Đặt Phòng Của Tôi
+            </h1>
+            <p class="page-subtitle">Quản lý tất cả đơn đặt phòng của bạn tại đây</p>
+        </div>
+
+        <div class="filter-tabs">
+            <button class="tab active" onclick="filterBookings('all')">
+                <i class="fas fa-list"></i> Tất cả
+            </button>
+            <button class="tab" onclick="filterBookings('confirmed')">
+                <i class="fas fa-check-circle"></i> Đã xác nhận
+            </button>
+            <button class="tab" onclick="filterBookings('pending')">
+                <i class="fas fa-clock"></i> Chờ xác nhận
+            </button>
+            <button class="tab" onclick="filterBookings('completed')">
+                <i class="fas fa-flag-checkered"></i> Đã hoàn thành
+            </button>
+            <button class="tab" onclick="filterBookings('cancelled')">
+                <i class="fas fa-times-circle"></i> Đã hủy
+            </button>
+        </div>
+
+        <div class="bookings-list" id="bookingsList">
+            <!-- Bookings will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Cancel Confirmation Modal -->
+    <div class="modal" id="cancelModal">
+        <div class="modal-content">
+            <h3 class="modal-header">
+                <i class="fas fa-exclamation-triangle" style="color: #dc3545;"></i>
+                Xác Nhận Hủy Đặt Phòng
+            </h3>
+            <div class="modal-body">
+                Bạn có chắc chắn muốn hủy đặt phòng này không? 
+                <br><br>
+                <strong>Lưu ý:</strong> 
+                <ul style="margin-top: 0.5rem; margin-left: 1.5rem;">
+                    <li>Hủy trước 24h: Được hoàn 100% tiền</li>
+                    <li>Hủy trong vòng 24h: Không được hoàn tiền</li>
+                </ul>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-cancel" onclick="closeModal()">
+                    Không, giữ đặt phòng
+                </button>
+                <button class="modal-btn modal-btn-confirm" onclick="confirmCancel()">
+                    Có, hủy ngay
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- xem chi tiết đơn -->
+    <div class="modal" id="detailModal">
+    <div class="modal-content" style="max-width: 600px;">
+        <div class="modal-header" style="border-bottom: 1px solid #eee; padding-bottom: 15px; display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
+            <h3 style="margin:0; color:#333; font-size: 1.3rem;"><i class="fas fa-file-invoice"></i> Chi Tiết Đặt Phòng</h3>
+            <span onclick="closeDetailModal()" style="cursor:pointer; font-size:1.2rem; color:#999;"><i class="fas fa-times"></i></span>
+        </div>
+        
+        <div class="modal-body">
+            <div style="display:flex; gap:15px; margin-bottom:20px;">
+                <img id="m-image" src="" style="width:100px; height:100px; object-fit:cover; border-radius:10px;">
+                <div>
+                    <h3 id="m-hotel" style="margin:0 0 5px 0; color:#667eea; font-size: 1.1rem;"></h3>
+                    <p style="font-size:0.9rem; color:#666; margin:0;"><i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh</p>
+                    <div id="m-status" style="margin-top:8px; display:inline-block; padding:4px 12px; border-radius:20px; font-size:0.8rem; font-weight:600; background:#eee;"></div>
+                </div>
+            </div>
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; background:#f9f9f9; padding:15px; border-radius:12px;">
+                <div>
+                    <small style="color:#888;">Mã đặt phòng</small>
+                    <div id="m-id" style="font-weight:600; color: #333;"></div>
+                </div>
+                <div>
+                    <small style="color:#888;">Ngày đặt</small>
+                    <div id="m-bookingDate" style="font-weight:600; color: #333;"></div>
+                </div>
+                <div>
+                    <small style="color:#888;">Nhận phòng</small>
+                    <div id="m-checkin" style="font-weight:600; color: #333;"></div>
+                </div>
+                <div>
+                    <small style="color:#888;">Trả phòng</small>
+                    <div id="m-checkout" style="font-weight:600; color: #333;"></div>
+                </div>
+                <div>
+                    <small style="color:#888;">Loại phòng</small>
+                    <div id="m-room" style="font-weight:600; color: #333;"></div>
+                </div>
+                <div>
+                    <small style="color:#888;">Số khách</small>
+                    <div id="m-guests" style="font-weight:600; color: #333;"></div>
+                </div>
+            </div>
+
+            <div style="margin-top:20px; text-align:right; border-top:1px solid #eee; padding-top:15px;">
+                <span style="font-size:1rem; color: #555;">Tổng thanh toán:</span>
+                <span id="m-total" style="font-size:1.4rem; font-weight:700; color:#667eea; margin-left:10px;"></span>
+            </div>
+        </div>
+
+        <div class="modal-footer" style="margin-top: 20px; display: flex; justify-content: center; gap: 20px;">
+    
+            <button class="modal-btn" style="background:#eee; color:#333; border:none; padding: 10px 30px; border-radius: 8px; cursor: pointer; font-weight: 500;" onclick="closeDetailModal()">
+                Đóng
+            </button>
+    
+            <button id="btnPrint" class="modal-btn" style="background:linear-gradient(135deg, #667eea, #764ba2); color:white; border:none; padding: 10px 30px; border-radius: 8px; cursor: pointer; font-weight: 500; display: inline-flex; align-items: center; gap: 8px;" onclick="window.print()">
+                <i class="fas fa-print"></i> In vé
+            </button>
+
+</div>
+    </div>
+</div>
+
+    <script src="js/my-bookings.js"></script>
+</body>
+</html>

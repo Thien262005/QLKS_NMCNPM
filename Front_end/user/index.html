@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>やばい - Hệ Thống Đặt Phòng Khách Sạn Cao Cấp</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated background -->
+    <div class="bg-animation"></div>
+
+    <!-- Floating particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-crown"></i>
+                やばい
+            </a>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link"> Trang Chủ</a></li>
+                    <li><a href="booking.html" class="nav-link"> Đặt Phòng</a></li>
+                    <li><a href="my-bookings.html" class="nav-link"> Đơn Của Tôi </a></li>
+                    <li><a href="hotel-detail.html" class="nav-link"> Khách Sạn</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons">
+                <a href="login.html" class="btn btn-outline">Đăng Nhập</a>
+                <a href="register.html" class="btn btn-primary">Đăng Ký</a>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Trải Nghiệm Nghỉ Dưỡng <br>
+                <span style="background: linear-gradient(135deg, #f093fb, #f5576c); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                    Đẳng Cấp Thế Giới
+                </span>
+            </h1>
+            <p class="hero-subtitle">
+                Khám phá hơn 10,000+ khách sạn cao cấp trên toàn quốc với dịch vụ 5 sao và công nghệ đặt phòng hiện đại nhất
+            </p>
+            <div class="hero-buttons">
+                <a href="booking.html" class="btn-hero btn-hero-primary">
+                    <i class="fas fa-search"></i>
+                    Tìm Khách Sạn Ngay
+                </a>
+                <a href="#features" class="btn-hero btn-hero-secondary">
+                    <i class="fas fa-play-circle"></i>
+                    Xem Demo
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section animate-on-scroll">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number">10,000+</div>
+                <div class="stat-label">
+                    <i class="fas fa-hotel"></i><br>
+                    Khách Sạn Cao Cấp
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">2.5M+</div>
+                <div class="stat-label">
+                    <i class="fas fa-users"></i><br>
+                    Khách Hàng Tin Tưởng
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">15M+</div>
+                <div class="stat-label">
+                    <i class="fas fa-calendar-check"></i><br>
+                    Lượt Đặt Phòng
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4.9/5</div>
+                <div class="stat-label">
+                    <i class="fas fa-star"></i><br>
+                    Đánh Giá Trung Bình
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="features-container">
+            <div class="section-title animate-on-scroll">
+                <h2>Tại Sao Chọn LuxStay?</h2>
+                <p>Những tính năng vượt trội giúp bạn có trải nghiệm đặt phòng tuyệt vời nhất</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Bảo Mật Tuyệt Đối</h3>
+                    <p class="feature-description">
+                        Đội ngũ chuyên viên chăm sóc khách hàng chuyên nghiệp luôn sẵn sàng hỗ trợ bạn 24/7.
+                        Chat trực tuyến, hotline miễn phí và email phản hồi nhanh chóng.
+                    </p>
+                    <a href="support.html" class="feature-btn">
+                        <i class="fas fa-arrow-right"></i>
+                        Liên Hệ Ngay
+                    </a>
+                </div>
+                
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Ứng Dụng Di Động</h3>
+                    <p class="feature-description">
+                        Ứng dụng mobile hiện đại với giao diện thân thiện, tốc độ nhanh và đồng bộ real-time.
+                        Đặt phòng mọi lúc mọi nơi chỉ với vài chạm.
+                    </p>
+                    <a href="mobile-app.html" class="feature-btn">
+                        <i class="fas fa-arrow-right"></i>
+                        Tải Ứng Dụng
+                    </a>
+                </div>
+                
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3 class="feature-title">Ưu Đãi Độc Quyền</h3>
+                    <p class="feature-description">
+                        Chương trình khuyến mãi hấp dẫn, tích điểm thành viên và giảm giá đặc biệt.
+                        Càng sử dụng nhiều, càng được nhiều ưu đãi.
+                    </p>
+                    <a href="promotions.html" class="feature-btn">
+                        <i class="fas fa-arrow-right"></i>
+                        Xem Ưu Đãi
+                    </a>
+                </div>
+                
+                <div class="feature-card animate-on-scroll">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="feature-title">Quản Lý Chuyên Nghiệp</h3>
+                    <p class="feature-description">
+                        Dashboard quản lý toàn diện cho chủ khách sạn với báo cáo chi tiết, 
+                        phân tích doanh thu và công cụ marketing hiệu quả.
+                    </p>
+                    <a href="management.html" class="feature-btn">
+                        <i class="fas fa-arrow-right"></i>
+                        Dành Cho Chủ KS
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section animate-on-scroll">
+        <div class="search-container">
+            <div class="search-card">
+                <h2 class="search-title">
+                    <i class="fas fa-search"></i>
+                    Tìm Khách Sạn Hoàn Hảo
+                </h2>
+                <form class="search-form">
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-map-marker-alt"></i>
+                            Điểm đến
+                        </label>
+                        <input type="text" class="form-control" placeholder="Thành phố, khu vực, tên khách sạn...">
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-calendar-alt"></i>
+                            Ngày nhận phòng
+                        </label>
+                        <input type="date" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-calendar-alt"></i>
+                            Ngày trả phòng
+                        </label>
+                        <input type="date" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-users"></i>
+                            Số khách
+                        </label>
+                        <select class="form-control">
+                            <option>1 người lớn</option>
+                            <option>2 người lớn</option>
+                            <option>2 người lớn, 1 trẻ em</option>
+                            <option>Gia đình (4+ người)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="search-btn">
+                            <i class="fas fa-search"></i>
+                            Tìm Kiếm
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="testimonials-container">
+            <div class="section-title animate-on-scroll">
+                <h2>Khách Hàng Nói Gì Về Chúng Tôi</h2>
+                <p>Hàng ngàn lượt đánh giá 5 sao từ khách hàng trên toàn quốc</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-content">
+                        "Tôi đã sử dụng LuxStay trong 2 năm qua và chưa bao giờ thất vọng. 
+                        Giao diện đẹp, dễ sử dụng và luôn tìm được khách sạn phù hợp với ngân sách. 
+                        Đặc biệt là dịch vụ chăm sóc khách hàng rất chu đáo và nhanh chóng."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AN</div>
+                        <div class="author-info">
+                            <h4>Nguyễn Văn An</h4>
+                            <p>Doanh nhân, TP.HCM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-content">
+                        "Là chủ một chuỗi khách sạn, tôi đã thử nhiều nền tảng khác nhau. 
+                        LuxStay có hệ thống quản lý tốt nhất, báo cáo chi tiết và hỗ trợ marketing hiệu quả. 
+                        Doanh thu của tôi đã tăng 40% kể từ khi sử dụng."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">LM</div>
+                        <div class="author-info">
+                            <h4>Trần Thị Lan Mai</h4>
+                            <p>Chủ khách sạn, Đà Nẵng</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card animate-on-scroll">
+                    <div class="testimonial-content">
+                        "App mobile của LuxStay rất tiện lợi, tôi có thể đặt phòng ngay cả khi đang di chuyển. 
+                        Tính năng AI đề xuất khách sạn rất chính xác, luôn match đúng gu và ngân sách của mình. 
+                        Definitely recommend!"
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">HD</div>
+                        <div class="author-info">
+                            <h4>Lê Hoàng Dũng</h4>
+                            <p>Du lịch blogger, Hà Nội</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--<div class="feature-card animate-on-scroll">
+        <div class="feature-icon">
+            <i class="fas fa-magic"></i>
+        </div>
+        <h3 class="feature-title">AI Thông Minh</h3>
+        <p class="feature-description">
+            Công nghệ AI đề xuất khách sạn phù hợp với sở thích, ngân sách và lịch trình của bạn.
+            Tối ưu hóa trải nghiệm cá nhân hóa.
+        </p>
+        <a href="ai-features.html" class="feature-btn">
+            <i class="fas fa-arrow-right"></i>
+                Khám Phá AI
+        </a>
+    </div>-->
+
+    <div class="feature-card animate-on-scroll">
+        <div class="feature-icon">
+            <i class="fas fa-headset"></i>
+        </div>
+        <h3 class="feature-title">Hỗ Trợ 24/7</h3>
+        <p class="feature-description">
+            Đội ngũ chăm sóc khách hàng luôn sẵn sàng giải đáp và hỗ trợ bạn mọi lúc, mọi nơi.
+        </p>
+        <a href="support.html" class="feature-btn">
+            <i class="fas fa-arrow-right"></i>
+                Liên Hệ Ngay
+        </a>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>
+                    <i class="fas fa-crown"></i>
+                    やばい
+                </h3>
+                <p>
+                    Nền tảng đặt phòng khách sạn hàng đầu Việt Nam với hơn 10,000+ 
+                    khách sạn cao cấp và dịch vụ 5 sao.
+                </p>
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Dịch Vụ</h3>
+                <p><a href="booking.html">Đặt phòng khách sạn</a></p>
+                <p><a href="villa-booking.html">Đặt villa, resort</a></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Hỗ Trợ</h3>
+                <p><a href="help-center.html">Trung tâm trợ giúp</a></p>
+                <p><a href="contact.html">Liên hệ</a></p>
+                <p><a href="faq.html">Câu hỏi thường gặp</a></p>
+                <p><a href="booking-policy.html">Chính sách đặt phòng</a></p>
+                <p><a href="refund-policy.html">Chính sách hoàn tiền</a></p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Liên Hệ</h3>
+                <p>
+                    <i class="fas fa-phone"></i>
+                    Hotline: 111 (24/7)
+                </p>
+                <p>
+                    <i class="fas fa-envelope"></i>
+                    Email: support@yabai.com
+                </p>
+                <p>
+                    <i class="fas fa-map-marker-alt"></i>
+                    Địa chỉ: 280, An Dương Vương, Phường Chợ Quán
+                </p>
+                <p>
+                    <i class="fas fa-clock"></i>
+                    Giờ làm việc: 24/7
+                </p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 やばい. All rights reserved. | 
+               <a href="privacy.html">Chính sách bảo mật</a> | 
+               <a href="terms.html">Điều khoản sử dụng</a>
+            </p>
+        </div>
+    </footer>
+    <script src="js/script.js"></script>
+</body>
+</html>             
+            

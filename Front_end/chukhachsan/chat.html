@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tư Vấn Khách Hàng - やばい</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/chat.css" />
+</head>
+<body>
+  <aside class="sidebar">
+    <button class="close-sidebar-btn" onclick="document.querySelector('.sidebar').classList.remove('active'); document.querySelector('.sidebar-overlay').classList.remove('active');">
+        <i class="fas fa-times"></i>
+    </button>
+    <div class="logo">
+      <h2><i class="fas fa-crown"></i> やばい</h2>
+      <p>Quản Lý Khách Sạn</p>
+    </div>
+    <ul class="menu">
+      <li class="menu-item">
+        <a href="index.html" class="menu-link">
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="bookings.html" class="menu-link">
+          <span>Đơn Đặt Phòng</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="rooms.html" class="menu-link">
+          <span>Quản Lý Phòng</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="pricing.html" class="menu-link">
+          <span>Giá & Khuyến Mãi</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="reviews.html" class="menu-link">
+          <span>Đánh Giá</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="reports.html" class="menu-link">
+          <span>Báo Cáo</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="transactions.html" class="menu-link">
+          <span>Giao Dịch</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link" onclick="toggleSubmenu(event, 'auth-submenu')">
+            <i class="fas fa-user-shield"></i>
+            <span>Quản lý phân quyền</span>
+            <i class="fas fa-chevron-down arrow"></i>
+        </a>
+        <ul id="auth-submenu" class="submenu">
+            <li>
+                <a href="roles.html" class="submenu-link">
+                    <i class="fas fa-users-cog"></i> Vai trò
+                </a>
+            </li>
+            <li>
+                <a href="permissions.html" class="submenu-link">
+                    <i class="fas fa-lock"></i> Phân quyền
+                </a>
+            </li>
+        </ul>
+    </li>
+      <li class="menu-item">
+        <a href="chat.html" class="menu-link active"> <i class="fas fa-comments"></i>
+          <span>Tư vấn khách hàng</span>
+          <span class="badge-counter" style="background: #ff4757; color: white; font-size: 0.7rem; padding: 2px 6px; border-radius: 10px; margin-left: auto;">3</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="settings.html" class="menu-link">
+          <i class="fas fa-cog"></i>
+          <span>Cài Đặt</span>
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+
+  <main class="main-content chat-layout">
+    
+    <div class="chat-sidebar-panel">
+      <button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('active'); document.querySelector('.sidebar-overlay').classList.toggle('active');">
+      <i class="fas fa-bars"></i>
+    </button>
+        <div class="chat-search">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Tìm kiếm khách hàng..." id="searchUser">
+        </div>
+        
+        <div class="user-list" id="userList">
+            <div class="user-item active" onclick="selectUser('user1')">
+                <div class="user-avatar">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User">
+                    <span class="status-dot online"></span>
+                </div>
+                <div class="user-details">
+                    <div class="user-name-row">
+                        <h4>Nguyễn Văn A</h4>
+                        <span class="msg-time">10:30</span>
+                    </div>
+                    <p class="last-msg">Em cần tư vấn đặt phòng cho 4 người ạ...</p>
+                </div>
+                <div class="msg-count">2</div>
+            </div>
+
+            <div class="user-item" onclick="selectUser('user2')">
+                <div class="user-avatar">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User">
+                    <span class="status-dot offline"></span>
+                </div>
+                <div class="user-details">
+                    <div class="user-name-row">
+                        <h4>Trần Thị B</h4>
+                        <span class="msg-time">Hôm qua</span>
+                    </div>
+                    <p class="last-msg">Cảm ơn khách sạn nhé!</p>
+                </div>
+            </div>
+
+            <div class="user-item" onclick="selectUser('user3')">
+                <div class="user-avatar">
+                    <div class="avatar-placeholder">L</div>
+                    <span class="status-dot online"></span>
+                </div>
+                <div class="user-details">
+                    <div class="user-name-row">
+                        <h4>Lê Văn C</h4>
+                        <span class="msg-time">08:15</span>
+                    </div>
+                    <p class="last-msg">Check-in lúc mấy giờ vậy ạ?</p>
+                </div>
+                <div class="msg-count">1</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="chat-window-panel">
+        <div class="chat-header">
+            <div class="chat-user-info">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" id="currentAvatar" alt="User">
+                <div>
+                    <h3 id="currentName">Nguyễn Văn A</h3>
+                    <span class="user-status">Đang hoạt động</span>
+                </div>
+            </div>
+            <div class="chat-actions">
+                <button class="icon-btn" title="Gọi điện"><i class="fas fa-phone"></i></button>
+                <button class="icon-btn" title="Video call"><i class="fas fa-video"></i></button>
+                <button class="icon-btn" title="Thông tin"><i class="fas fa-info-circle"></i></button>
+            </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="message received">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" class="msg-avatar">
+                <div class="msg-bubble">
+                    Xin chào khách sạn!
+                    <span class="msg-timestamp">10:28</span>
+                </div>
+            </div>
+
+            <div class="message sent">
+                <div class="msg-bubble">
+                    Dạ chào anh A ạ! やばい Hotel có thể giúp gì cho anh không ạ?
+                    <span class="msg-timestamp">10:29</span>
+                </div>
+            </div>
+
+            <div class="message received">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" class="msg-avatar">
+                <div class="msg-bubble">
+                    Em cần tư vấn đặt phòng cho 4 người vào cuối tuần này ạ.
+                    <span class="msg-timestamp">10:30</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-input-area">
+            <button class="icon-btn"><i class="fas fa-paperclip"></i></button>
+            <button class="icon-btn"><i class="far fa-image"></i></button>
+            <div class="input-wrapper">
+                <input type="text" id="messageInput" placeholder="Nhập tin nhắn..." onkeypress="handleKeyPress(event)">
+                <button class="emoji-btn"><i class="far fa-smile"></i></button>
+            </div>
+            <button class="send-btn" onclick="sendMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+
+  </main>
+
+  <script src="js/chat.js"></script>
+  <script src="js/role.js"></script>
+</body>
+</html>

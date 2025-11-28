@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh Toán - やばい</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="../css/payment.css" rel="stylesheet">
+
+</head>
+<body>
+    <!-- Navigation Header (Fixed) -->
+    <header class="header" id="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-crown"></i>
+                やばい
+            </a>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Trang Chủ</a></li>
+                    <li><a href="booking.html" class="nav-link">Đặt Phòng</a></li>
+                    <li><a href="my-bookings.html" class="nav-link">Đơn Của Tôi</a></li>
+                    <li><a href="hotel-detail.html" class="nav-link">Khách Sạn</a></li>
+                </ul>
+            </nav>
+            
+            <div class="auth-buttons">
+                <a href="login.html" class="btn btn-outline">
+                    Đăng Nhập
+                </a>
+                <a href="register.html" class="btn btn-primary">
+                    Đăng Ký
+                </a>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Content Container -->
+    <div class="container">
+        <!-- Progress Steps -->
+        <div class="progress-header">
+            <div class="progress-steps">
+                <div class="step">
+                    <div class="step-number"><i class="fas fa-check"></i></div>
+                    <span>Chọn phòng</span>
+                </div>
+                <div class="step active">
+                    <div class="step-number">2</div>
+                    <span>Thanh toán</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <span>Hoàn tất</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rest of the content... -->
+
+        <div class="main-content">
+            <div class="payment-section">
+                <h2 class="section-title">
+                    <i class="fas fa-credit-card"></i>
+                    Phương Thức Thanh Toán
+                </h2>
+
+                <div id="alert" class="alert"></div>
+
+                <div class="payment-methods">
+                    <div class="payment-method card active" onclick="selectPayment('card')">
+                        <i class="fas fa-credit-card"></i>
+                        <div class="payment-method-name">Thẻ Tín Dụng/Ghi Nợ</div>
+                    </div>
+                    <div class="payment-method momo" onclick="selectPayment('momo')">
+                        <i class="fas fa-wallet"></i>
+                        <div class="payment-method-name">Ví MoMo</div>
+                    </div>
+                    <div class="payment-method vnpay" onclick="selectPayment('vnpay')">
+                        <i class="fas fa-qrcode"></i>
+                        <div class="payment-method-name">VNPay QR</div>
+                    </div>
+                    <div class="payment-method bank" onclick="selectPayment('bank')">
+                        <i class="fas fa-university"></i>
+                        <div class="payment-method-name">Chuyển Khoản</div>
+                    </div>
+                </div>
+
+                <!-- Card Payment Form -->
+                <div id="card-form" class="form-section active">
+                    <h3 style="margin-bottom: 1rem; color: #333;">Thông Tin Thẻ</h3>
+                    <form onsubmit="processPayment(event)">
+                        <div class="form-group full-width">
+                            <label>Số thẻ</label>
+                            <input type="text" class="form-control" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                            <div class="card-icons">
+                                <div class="card-icon" style="color: #1434CB;">VISA</div>
+                                <div class="card-icon" style="color: #EB001B;">MC</div>
+                                <div class="card-icon" style="color: #006FCF;">AMEX</div>
+                                <div class="card-icon" style="color: #00A3E0;">JCB</div>
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Tên chủ thẻ</label>
+                            <input type="text" class="form-control" placeholder="NGUYEN VAN A" required>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Ngày hết hạn</label>
+                                <input type="text" class="form-control" placeholder="MM/YY" maxlength="5" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Mã CVV</label>
+                                <input type="text" class="form-control" placeholder="123" maxlength="3" required>
+                            </div>
+                        </div>
+
+                        <h3 style="margin: 2rem 0 1rem; color: #333;">Thông Tin Liên Hệ</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Họ và tên</label>
+                                <input type="text" class="form-control" placeholder="Nguyễn Văn A" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Số điện thoại</label>
+                                <input type="tel" class="form-control" placeholder="0912345678" required>
+                            </div>
+                            <div class="form-group full-width">
+                                <label>Email</label>
+                                <input type="email" class="form-control" placeholder="example@email.com" required>
+                            </div>
+                        </div>
+
+                        <div style="margin: 1.5rem 0;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="checkbox" required>
+                                <span style="color: #666; font-size: 0.9rem;">
+                                    Tôi đồng ý với <a href="#" style="color: #667eea;">Điều khoản và điều kiện</a>
+                                </span>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- MoMo Payment -->
+                <div id="momo-form" class="form-section">
+                    <div class="qr-code-section">
+                        <div class="qr-placeholder">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                        <h3 style="color: #333; margin-bottom: 1rem;">Quét mã QR để thanh toán</h3>
+                        <div class="qr-instructions">
+                            1. Mở ứng dụng MoMo<br>
+                            2. Chọn "Quét mã QR"<br>
+                            3. Quét mã và xác nhận thanh toán<br>
+                            <br>
+                            <strong>Số tiền: <span id="momo-amount" style="color: #667eea;">5.775.000đ</span></strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VNPay Payment -->
+                <div id="vnpay-form" class="form-section">
+                    <div class="qr-code-section">
+                        <div class="qr-placeholder">
+                            <i class="fas fa-qrcode"></i>
+                        </div>
+                        <h3 style="color: #333; margin-bottom: 1rem;">VNPay QR Code</h3>
+                        <div class="qr-instructions">
+                            Sử dụng ứng dụng ngân hàng hỗ trợ VNPay-QR để quét mã<br>
+                            <br>
+                            <strong>Số tiền: <span style="color: #667eea;">5.775.000đ</span></strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bank Transfer -->
+                <div id="bank-form" class="form-section">
+                    <div style="background: #f8f9fa; padding: 2rem; border-radius: 15px;">
+                        <h3 style="color: #333; margin-bottom: 1.5rem;">Thông Tin Chuyển Khoản</h3>
+                        <div style="line-height: 2; color: #666;">
+                            <strong style="color: #333;">Ngân hàng:</strong> Vietcombank<br>
+                            <strong style="color: #333;">Số tài khoản:</strong> 0123456789<br>
+                            <strong style="color: #333;">Chủ tài khoản:</strong> CONG TY LUXSTAY<br>
+                            <strong style="color: #333;">Số tiền:</strong> <span style="color: #667eea; font-size: 1.3rem;">5.775.000đ</span><br>
+                            <strong style="color: #333;">Nội dung:</strong> <span style="color: #667eea;">LUXSTAY [SĐT của bạn]</span>
+                        </div>
+                        <div style="margin-top: 1.5rem; padding: 1rem; background: #fff3cd; border-radius: 10px; color: #856404;">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <strong>Lưu ý:</strong> Vui lòng chuyển khoản đúng nội dung để hệ thống tự động xác nhận đặt phòng
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary-sidebar">
+                <div class="summary-card">
+                    <h3 class="section-title" style="font-size: 1.3rem;">
+                        <i class="fas fa-receipt"></i>
+                        Chi Tiết Đặt Phòng
+                    </h3>
+
+                    <div class="booking-info">
+                        <div class="hotel-name" id="hotelName">Grand Luxury Hotel & Spa</div>
+                        <div class="booking-detail">
+                            <span>Loại phòng:</span>
+                            <strong id="roomType">Deluxe King Bed</strong>
+                        </div>
+                        <div class="booking-detail">
+                            <span>Nhận phòng:</span>
+                            <strong id="checkinDate">15/10/2025</strong>
+                        </div>
+                        <div class="booking-detail">
+                            <span>Trả phòng:</span>
+                            <strong id="checkoutDate">17/10/2025</strong>
+                        </div>
+                        <div class="booking-detail">
+                            <span>Số đêm:</span>
+                            <strong id="nights">2 đêm</strong>
+                        </div>
+                        <div class="booking-detail">
+                            <span>Số khách:</span>
+                            <strong id="guests">2 người</strong>
+                        </div>
+                    </div>
+
+                    <div class="promo-code">
+                        <input type="text" class="promo-input" placeholder="Mã giảm giá">
+                        <button class="apply-btn" onclick="applyPromo()">
+                            <i class="fas fa-check"></i>
+                        </button>
+                    </div>
+
+                    <div class="price-breakdown">
+                        <div class="price-row">
+                            <span>Giá phòng</span>
+                            <span id="roomPrice">5.000.000đ</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Phí dịch vụ</span>
+                            <span id="serviceFee">250.000đ</span>
+                        </div>
+                        <div class="price-row">
+                            <span>Thuế VAT (10%)</span>
+                            <span id="tax">525.000đ</span>
+                        </div>
+                        <div class="price-row" id="discountRow" style="display: none; color: #00a651;">
+                            <span>Giảm giá</span>
+                            <span id="discount">-500.000đ</span>
+                        </div>
+                        <div class="price-row total">
+                            <span>Tổng cộng</span>
+                            <span class="total-amount" id="totalAmount">5.775.000đ</span>
+                        </div>
+                    </div>
+
+                    <button class="submit-payment" onclick="processPayment(event)">
+                        <i class="fas fa-lock"></i> Xác Nhận Thanh Toán
+                    </button>
+
+                    <div class="security-badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Thanh toán bảo mật</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/payment.js"></script>
+</body>
+</html>

@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giá & Khuyến Mãi - やばい</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/pricing_modals.css">
+  </head>
+  <body>
+    <aside class="sidebar">
+      <button class="close-sidebar-btn" onclick="document.querySelector('.sidebar').classList.remove('active'); document.querySelector('.sidebar-overlay').classList.remove('active');">
+        <i class="fas fa-times"></i>
+    </button>
+      <div class="logo">
+        <h2><i class="fas fa-crown"></i> やばい</h2>
+        <p>Quản Lý Khách Sạn</p>
+      </div>
+      <ul class="menu">
+        <li class="menu-item">
+          <a href="index.html" class="menu-link">
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="bookings.html" class="menu-link">
+            <span>Đơn Đặt Phòng</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="rooms.html" class="menu-link">
+            <span>Quản Lý Phòng</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="pricing.html" class="menu-link active">
+            <span>Giá & Khuyến Mãi</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="reviews.html" class="menu-link">
+            <span>Đánh Giá</span>
+          </a>
+        </li>
+        <li class="menu-item">
+          <a href="reports.html" class="menu-link">
+            <span>Báo Cáo</span>
+          </a>
+        </li>
+        <li class="menu-item">
+        <a href="transactions.html" class="menu-link">
+          <span>Giao Dịch</span>
+        </a>
+      </li>
+        <li class="menu-item">
+        <a href="#" class="menu-link" onclick="toggleSubmenu(event, 'auth-submenu')">
+            <i class="fas fa-user-shield"></i>
+            <span>Quản lý phân quyền</span>
+            <i class="fas fa-chevron-down arrow"></i>
+        </a>
+        <ul id="auth-submenu" class="submenu">
+            <li>
+                <a href="roles.html" class="submenu-link">
+                    <i class="fas fa-users-cog"></i> Vai trò
+                </a>
+            </li>
+            <li>
+                <a href="permissions.html" class="submenu-link">
+                    <i class="fas fa-lock"></i> Phân quyền
+                </a>
+            </li>
+        </ul>
+    </li>
+    <li class="menu-item">
+    <a href="chat.html" class="menu-link"> <i class="fas fa-comments"></i>
+        <span>Tư vấn khách hàng</span>
+        <span class="badge-counter" style="background: #ff4757; color: white; font-size: 0.7rem; padding: 2px 6px; border-radius: 10px; margin-left: auto;">3</span>
+    </a>
+</li>
+        <li class="menu-item">
+          <a href="settings.html" class="menu-link">
+            <i class="fas fa-cog"></i>
+            <span>Cài Đặt</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <div class="header">
+        <button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('active'); document.querySelector('.sidebar-overlay').classList.toggle('active');">
+      <i class="fas fa-bars"></i>
+    </button>
+        <h1 class="welcome">Giá & Khuyến Mãi</h1>
+        <div class="user-info">
+          <div class="user-avatar">AD</div>
+          <div>
+            <div style="font-weight: 600; color: #333">Admin User</div>
+            <div style="font-size: 0.85rem; color: #666">Chủ khách sạn</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fas fa-tags"></i>
+            Bảng Giá Phòng
+          </h2>
+          <button class="btn btn-primary" onclick="alert('Cập nhật giá')">
+            <i class="fas fa-edit"></i>
+            Cập Nhật Giá
+          </button>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Loại Phòng</th>
+              <th>Giá Thường Ngày</th>
+              <th>Giá Cuối Tuần</th>
+              <th>Giá Lễ/Tết</th>
+              <th>Hành Động</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Deluxe King</strong></td>
+              <td>2.500.000đ</td>
+              <td>3.000.000đ</td>
+              <td>3.500.000đ</td>
+              <td>
+                <button class="btn btn-sm btn-edit">
+                  <i class="fas fa-edit"></i> Chỉnh Sửa
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Deluxe Twin</strong></td>
+              <td>2.500.000đ</td>
+              <td>3.000.000đ</td>
+              <td>3.500.000đ</td>
+              <td>
+                <button class="btn btn-sm btn-edit">
+                  <i class="fas fa-edit"></i> Chỉnh Sửa
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Suite Executive</strong></td>
+              <td>4.500.000đ</td>
+              <td>5.000.000đ</td>
+              <td>6.000.000đ</td>
+              <td>
+                <button class="btn btn-sm btn-edit">
+                  <i class="fas fa-edit"></i> Chỉnh Sửa
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Suite Family</strong></td>
+              <td>5.500.000đ</td>
+              <td>6.000.000đ</td>
+              <td>7.000.000đ</td>
+              <td>
+                <button class="btn btn-sm btn-edit">
+                  <i class="fas fa-edit"></i> Chỉnh Sửa
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Presidential Suite</strong></td>
+              <td>12.000.000đ</td>
+              <td>15.000.000đ</td>
+              <td>18.000.000đ</td>
+              <td>
+                <button class="btn btn-sm btn-edit">
+                  <i class="fas fa-edit"></i> Chỉnh Sửa
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="content-section">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fas fa-percent"></i>
+            Khuyến Mãi Đang Chạy
+          </h2>
+          <button class="btn btn-primary" onclick="alert('Tạo khuyến mãi mới')">
+            <i class="fas fa-plus"></i>
+            Tạo Khuyến Mãi
+          </button>
+        </div>
+
+        <div class="promo-grid">
+          <div class="promo-card green">
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: start;
+                margin-bottom: 1rem;
+              "
+            >
+              <div>
+                <h4 style="color: #333; margin-bottom: 0.5rem">
+                  Giảm 20% Cuối Tuần
+                </h4>
+                <p style="color: #666; font-size: 0.9rem">Áp dụng thứ 6-CN</p>
+              </div>
+              <span class="status-badge status-active">Đang chạy</span>
+            </div>
+            <div style="color: #666; font-size: 0.9rem; margin-bottom: 1rem">
+              <div>📅 Thời gian: 01/10 - 31/10/2025</div>
+              <div>📊 Đã sử dụng: 124 lượt</div>
+              <div>💰 Tiết kiệm: 45.000.000đ</div>
+            </div>
+            <div class="action-btns">
+              <button class="btn btn-sm btn-edit">
+                <i class="fas fa-edit"></i> Sửa
+              </button>
+              <button class="btn btn-sm btn-delete">
+                <i class="fas fa-stop"></i> Dừng
+              </button>
+            </div>
+          </div>
+
+          <div class="promo-card blue">
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: start;
+                margin-bottom: 1rem;
+              "
+            >
+              <div>
+                <h4 style="color: #333; margin-bottom: 0.5rem">
+                  Đặt 3 Đêm Giảm 15%
+                </h4>
+                <p style="color: #666; font-size: 0.9rem">
+                  Đặt từ 3 đêm trở lên
+                </p>
+              </div>
+              <span class="status-badge status-active">Đang chạy</span>
+            </div>
+            <div style="color: #666; font-size: 0.9rem; margin-bottom: 1rem">
+              <div>📅 Thời gian: 15/10 - 15/11/2025</div>
+              <div>📊 Đã sử dụng: 67 lượt</div>
+              <div>💰 Tiết kiệm: 28.500.000đ</div>
+            </div>
+            <div class="action-btns">
+              <button class="btn btn-sm btn-edit">
+                <i class="fas fa-edit"></i> Sửa
+              </button>
+              <button class="btn btn-sm btn-delete">
+                <i class="fas fa-stop"></i> Dừng
+              </button>
+            </div>
+          </div>
+
+          <div class="promo-card green">
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: start;
+                margin-bottom: 1rem;
+              "
+            >
+              <div>
+                <h4 style="color: #333; margin-bottom: 0.5rem">
+                  Early Bird 30%
+                </h4>
+                <p style="color: #666; font-size: 0.9rem">Đặt trước 30 ngày</p>
+              </div>
+              <span class="status-badge status-active">Đang chạy</span>
+            </div>
+            <div style="color: #666; font-size: 0.9rem; margin-bottom: 1rem">
+              <div>📅 Thời gian: 01/10 - 31/12/2025</div>
+              <div>📊 Đã sử dụng: 89 lượt</div>
+              <div>💰 Tiết kiệm: 67.200.000đ</div>
+            </div>
+            <div class="action-btns">
+              <button class="btn btn-sm btn-edit">
+                <i class="fas fa-edit"></i> Sửa
+              </button>
+              <button class="btn btn-sm btn-delete">
+                <i class="fas fa-stop"></i> Dừng
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fas fa-history"></i>
+            Lịch Sử Khuyến Mãi
+          </h2>
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Tên Khuyến Mãi</th>
+              <th>Thời Gian</th>
+              <th>Giảm Giá</th>
+              <th>Lượt Sử Dụng</th>
+              <th>Doanh Thu</th>
+              <th>Trạng Thái</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Giảm 25% Tết Nguyên Đán</strong></td>
+              <td>20/01 - 05/02/2025</td>
+              <td>25%</td>
+              <td>256 lượt</td>
+              <td><strong>180.000.000đ</strong></td>
+              <td>
+                <span class="status-badge status-pending">Đã kết thúc</span>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Flash Sale Giờ Vàng</strong></td>
+              <td>01/09 - 30/09/2024</td>
+              <td>40%</td>
+              <td>423 lượt</td>
+              <td><strong>320.000.000đ</strong></td>
+              <td>
+                <span class="status-badge status-pending">Đã kết thúc</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    <!-- Modal Overlay -->
+    <div
+      id="pricingModalOverlay"
+      class="pricing-modal-overlay"
+      onclick="closePricingModal()"
+    ></div>
+
+    <!-- Update Price Modal -->
+    <div id="updatePriceModal" class="pricing-modal">
+      <div class="pricing-modal-header">
+        <h2 class="pricing-modal-title">
+          <i class="fas fa-edit"></i>
+          Cập Nhật Giá Phòng
+        </h2>
+        <button class="pricing-modal-close" onclick="closePricingModal()">
+          ×
+        </button>
+      </div>
+
+      <div class="pricing-modal-body">
+        <form id="priceForm">
+          <div class="form-group">
+            <label>Loại Phòng <span class="required">*</span></label>
+            <select class="form-control" id="priceRoomType" required>
+              <option value="">-- Chọn loại phòng --</option>
+              <option value="deluxe-king">Deluxe King</option>
+              <option value="deluxe-twin">Deluxe Twin</option>
+              <option value="suite-executive">Suite Executive</option>
+              <option value="suite-family">Suite Family</option>
+              <option value="presidential">Presidential Suite</option>
+            </select>
+          </div>
+
+          <div class="info-box">
+            <i class="fas fa-info-circle"></i>
+            <p>
+              Cập nhật giá cho các khung thời gian khác nhau để tối ưu doanh
+              thu.
+            </p>
+          </div>
+
+          <div class="price-display-grid">
+            <div
+              class="price-display-item"
+              style="
+                background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+              "
+            >
+              <div class="price-display-label">Giá Thường Ngày</div>
+              <div class="price-display-value" id="weekdayPriceDisplay">
+                2.5tr
+              </div>
+            </div>
+            <div
+              class="price-display-item"
+              style="
+                background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+              "
+            >
+              <div class="price-display-label">Giá Cuối Tuần</div>
+              <div class="price-display-value" id="weekendPriceDisplay">
+                3.0tr
+              </div>
+            </div>
+            <div
+              class="price-display-item"
+              style="
+                background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+              "
+            >
+              <div class="price-display-label">Giá Lễ/Tết</div>
+              <div class="price-display-value" id="holidayPriceDisplay">
+                3.5tr
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label
+                >Giá Thường Ngày (VNĐ) <span class="required">*</span></label
+              >
+              <div class="input-with-icon">
+                <i class="fas fa-money-bill-wave"></i>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="weekdayPrice"
+                  placeholder="2500000"
+                  required
+                  onchange="updatePriceDisplay()"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Giá Cuối Tuần (VNĐ) <span class="required">*</span></label>
+              <div class="input-with-icon">
+                <i class="fas fa-money-bill-wave"></i>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="weekendPrice"
+                  placeholder="3000000"
+                  required
+                  onchange="updatePriceDisplay()"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Giá Lễ/Tết (VNĐ) <span class="required">*</span></label>
+            <div class="input-with-icon">
+              <i class="fas fa-money-bill-wave"></i>
+              <input
+                type="number"
+                class="form-control"
+                id="holidayPrice"
+                placeholder="3500000"
+                required
+                onchange="updatePriceDisplay()"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Ghi Chú</label>
+            <textarea
+              class="form-control"
+              id="priceNote"
+              placeholder="Ghi chú về giá..."
+            ></textarea>
+          </div>
+        </form>
+      </div>
+
+      <div class="pricing-modal-footer">
+        <button class="btn btn-outline" onclick="closePricingModal()">
+          Hủy
+        </button>
+        <button class="btn btn-success" onclick="savePrice()">
+          <i class="fas fa-save"></i> Lưu Giá
+        </button>
+      </div>
+    </div>
+
+    <!-- Create/Edit Promotion Modal -->
+    <div id="promoModal" class="pricing-modal">
+      <div class="pricing-modal-header promo">
+        <h2 class="pricing-modal-title" id="promoModalTitle">
+          <i class="fas fa-plus-circle"></i>
+          Tạo Khuyến Mãi Mới
+        </h2>
+        <button class="pricing-modal-close" onclick="closePricingModal()">
+          ×
+        </button>
+      </div>
+
+      <div class="pricing-modal-body">
+        <form id="promoForm">
+          <!-- Basic Information -->
+          <h3 style="margin-bottom: 20px; color: #333; font-size: 18px">
+            <i class="fas fa-info-circle" style="color: #f5576c"></i>
+            Thông tin khuyến mãi
+          </h3>
+
+          <div class="form-group">
+            <label>Tên Khuyến Mãi <span class="required">*</span></label>
+            <div class="input-with-icon">
+              <i class="fas fa-tag"></i>
+              <input
+                type="text"
+                class="form-control"
+                id="promoName"
+                placeholder="Ví dụ: Giảm 20% Cuối Tuần"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Mô Tả</label>
+            <textarea
+              class="form-control"
+              id="promoDescription"
+              placeholder="Mô tả chi tiết về chương trình khuyến mãi..."
+            ></textarea>
+          </div>
+
+          <!-- Discount Type -->
+          <h3 style="margin: 30px 0 15px; color: #333; font-size: 18px">
+            <i class="fas fa-percent" style="color: #f5576c"></i>
+            Loại giảm giá
+          </h3>
+
+          <div class="discount-type-group">
+            <label class="discount-type-option active">
+              <input
+                type="radio"
+                name="discountType"
+                value="percentage"
+                checked
+                onchange="toggleDiscountType()"
+              />
+              <div>
+                <strong>Theo phần trăm</strong>
+                <div style="font-size: 12px; color: #6c757d">
+                  Giảm % trên tổng giá
+                </div>
+              </div>
+            </label>
+            <label class="discount-type-option">
+              <input
+                type="radio"
+                name="discountType"
+                value="fixed"
+                onchange="toggleDiscountType()"
+              />
+              <div>
+                <strong>Số tiền cố định</strong>
+                <div style="font-size: 12px; color: #6c757d">
+                  Giảm số tiền nhất định
+                </div>
+              </div>
+            </label>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label id="discountLabel"
+                >Giảm Giá (%) <span class="required">*</span></label
+              >
+              <div class="input-with-icon">
+                <i class="fas fa-percent" id="discountIcon"></i>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="discountValue"
+                  placeholder="20"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Giảm Tối Đa (VNĐ)</label>
+              <div class="input-with-icon">
+                <i class="fas fa-money-bill-wave"></i>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="maxDiscount"
+                  placeholder="5000000"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Time Period -->
+          <h3 style="margin: 30px 0 15px; color: #333; font-size: 18px">
+            <i class="fas fa-calendar-alt" style="color: #f5576c"></i>
+            Thời gian áp dụng
+          </h3>
+
+          <div class="date-range-group">
+            <div class="form-group" style="margin: 0">
+              <label>Ngày Bắt Đầu <span class="required">*</span></label>
+              <input
+                type="date"
+                class="form-control"
+                id="promoStartDate"
+                required
+              />
+            </div>
+            <div class="date-range-separator">→</div>
+            <div class="form-group" style="margin: 0">
+              <label>Ngày Kết Thúc <span class="required">*</span></label>
+              <input
+                type="date"
+                class="form-control"
+                id="promoEndDate"
+                required
+              />
+            </div>
+          </div>
+
+          <!-- Conditions -->
+          <h3 style="margin: 30px 0 15px; color: #333; font-size: 18px">
+            <i class="fas fa-clipboard-check" style="color: #f5576c"></i>
+            Điều kiện áp dụng
+          </h3>
+
+          <div class="promo-conditions">
+            <div class="condition-item">
+              <input
+                type="checkbox"
+                id="minNights"
+                onchange="toggleCondition('minNights')"
+              />
+              <label for="minNights">Số đêm tối thiểu</label>
+            </div>
+            <div
+              id="minNightsInput"
+              class="condition-input"
+              style="display: none"
+            >
+              <input
+                type="number"
+                class="form-control"
+                placeholder="3"
+                min="1"
+              />
+              <span style="display: flex; align-items: center; color: #6c757d"
+                >đêm</span
+              >
+            </div>
+
+            <div class="condition-item">
+              <input
+                type="checkbox"
+                id="minAmount"
+                onchange="toggleCondition('minAmount')"
+              />
+              <label for="minAmount">Giá trị đơn tối thiểu</label>
+            </div>
+            <div
+              id="minAmountInput"
+              class="condition-input"
+              style="display: none"
+            >
+              <input type="number" class="form-control" placeholder="5000000" />
+              <span style="display: flex; align-items: center; color: #6c757d"
+                >VNĐ</span
+              >
+            </div>
+
+            <div class="condition-item">
+              <input
+                type="checkbox"
+                id="earlyBooking"
+                onchange="toggleCondition('earlyBooking')"
+              />
+              <label for="earlyBooking">Đặt trước (Early Bird)</label>
+            </div>
+            <div
+              id="earlyBookingInput"
+              class="condition-input"
+              style="display: none"
+            >
+              <input
+                type="number"
+                class="form-control"
+                placeholder="30"
+                min="1"
+              />
+              <span style="display: flex; align-items: center; color: #6c757d"
+                >ngày</span
+              >
+            </div>
+
+            <div class="condition-item">
+              <input type="checkbox" id="weekendOnly" />
+              <label for="weekendOnly">Chỉ áp dụng cuối tuần</label>
+            </div>
+
+            <div class="condition-item">
+              <input type="checkbox" id="newCustomer" />
+              <label for="newCustomer">Chỉ khách hàng mới</label>
+            </div>
+          </div>
+
+          <!-- Applicable Rooms -->
+          <div class="form-group">
+            <label>Áp Dụng Cho Phòng</label>
+            <select
+              class="form-control"
+              id="applicableRooms"
+              multiple
+              style="height: 120px"
+            >
+              <option value="all" selected>Tất cả các loại phòng</option>
+              <option value="deluxe-king">Deluxe King</option>
+              <option value="deluxe-twin">Deluxe Twin</option>
+              <option value="suite-executive">Suite Executive</option>
+              <option value="suite-family">Suite Family</option>
+              <option value="presidential">Presidential Suite</option>
+            </select>
+            <small style="color: #6c757d; display: block; margin-top: 5px">
+              Giữ Ctrl (Windows) hoặc Cmd (Mac) để chọn nhiều phòng
+            </small>
+          </div>
+
+          <div class="info-box">
+            <i class="fas fa-lightbulb"></i>
+            <p>
+              <strong>Mẹo:</strong> Tạo khuyến mãi hấp dẫn để tăng tỷ lệ đặt
+              phòng. Khuyến mãi Early Bird thường có hiệu quả cao nhất.
+            </p>
+          </div>
+        </form>
+      </div>
+
+      <div class="pricing-modal-footer">
+        <button class="btn btn-outline" onclick="closePricingModal()">
+          Hủy
+        </button>
+        <button class="btn btn-primary" onclick="savePromotion()">
+          <i class="fas fa-save"></i> Lưu Khuyến Mãi
+        </button>
+      </div>
+    </div>
+    <script src="js/pricing_modals.js"></script>
+    <script src="js/role.js"></script>
+  </body>
+</html>

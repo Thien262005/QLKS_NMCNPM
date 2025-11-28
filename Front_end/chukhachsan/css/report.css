@@ -1,0 +1,55 @@
+.filter-select {
+    padding: 6px 12px;
+    border: 1px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: #555;
+    background-color: #f8f9fa;
+    cursor: pointer;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    transition: border 0.3s;
+}
+
+.filter-select:focus {
+    border-color: #7fc6ea;
+    background-color: #fff;
+}
+
+.pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #f0f0f0;
+}
+
+.page-btn {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #e1e5e9;
+    background: white;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #666;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+}
+
+.page-btn:hover {
+    background: #f0f0f0;
+    color: #333;
+    border-color: #ccc;
+}
+
+.page-btn.active {
+    background: linear-gradient(135deg, #8be788, #86ddec);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 4px 6px rgba(102, 126, 234, 0.25);
+}

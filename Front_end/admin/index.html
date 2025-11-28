@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Manage やばい - Admin Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+</head>
+
+<body>
+
+<div class="sidebar-overlay" onclick="this.classList.remove('active'); document.querySelector('.sidebar').classList.remove('active');"></div>
+    <header class="header">
+        <div class="header__content">
+            <a href="index.html" class="header__logo">
+                <img src="img/logo.png" alt="LuxStay Logo">
+            </a>
+            <button class="header__btn" type="button" onclick="toggleSidebar()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+    <div class="sidebar" id="sidebar">
+        <a href="index.html" class="header__logo">
+            <img src="img/logo.png" alt="LuxStay Logo" style="padding-left: 20px;">
+        </a>
+        <div class="sidebar__user">
+            <div class="sidebar__user-img">
+                <img src="img/user.svg" alt="User Avatar">
+            </div>
+            <div class="sidebar__user-info">
+                <span class="sidebar__user-name">Admin</span>
+                <span class="sidebar__user-email">admin@yabai.com</span>
+            </div>
+                <a href="logout.php" class="sidebar__user-btn" title="Đăng xuất" style="display: flex; align-items: center; justify-content: center; text-decoration: none;">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+        </div>
+        <div class="sidebar__nav-wrap">
+            <ul class="sidebar__nav">
+                <li class="sidebar__nav-item">
+                    <a href="index.html" class="sidebar__nav-link sidebar__nav-link--active">
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+
+                <li class="sidebar__nav-item">
+                    <a href="manage_hotels.html" class="sidebar__nav-link">
+                        <span>Quản lý khách sạn</span>
+                    </a>
+                </li>
+
+                <li class="sidebar__nav-item">
+                    <a href="manage_users.html" class="sidebar__nav-link">
+                        <span>Quản lý người dùng</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="sidebar__copyright">
+            © 2025 やばい. <br>
+            Create by <a href="index.html" target="_blank">やばい Team</a>
+        </div>
+    </div>
+
+    <main class="main">
+        <div class="container-fluid">
+            <div class="row row--grid">
+                <div class="col-12">
+                    <div class="main__title fade-in">
+                        <h2>Dashboard</h2>
+                        <a href="manage_users.html" class="main__title-link">Quản lý người dùng</a>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="stats-grid fade-in">
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalUsers">1,248</div>
+                            <div class="stat-label">Tổng người dùng</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalHotels">156</div>
+                            <div class="stat-label">Tổng khách sạn</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalBookings">3,847</div>
+                            <div class="stat-label">Tổng đặt phòng</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalRevenue">25.8M</div>
+                            <div class="stat-label">Doanh thu (VNĐ)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-6">
+                    <div class="dashbox fade-in">
+                        <div class="dashbox__title">
+                            <h3>Quản lý người dùng</h3>
+                            <div class="dashbox__wrap">
+                                <a href="#" class="refresh-btn" onclick="refreshUserData()" title="Làm mới">
+                                    <i class="fas fa-sync-alt"></i>
+                                </a>
+                                <a class="dashbox__more" href="manage_users.html">Xem chi tiết</a>
+                            </div>
+                        </div>
+
+                        <div class="dashbox__content">
+                            <div class="table-container">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Tên</th>
+                                            <th>Email</th>
+                                            <th>Vai trò</th>
+                                            <th>Trạng thái</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>#001</td>
+                                            <td>Nguyễn Văn A</td>
+                                            <td>nguyenvana@email.com</td>
+                                            <td>Khách hàng</td>
+                                            <td><span class="status active">Hoạt động</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>#002</td>
+                                            <td>Trần Thị B</td>
+                                            <td>tranthib@email.com</td>
+                                            <td>Chủ khách sạn</td>
+                                            <td><span class="status active">Hoạt động</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>#003</td>
+                                            <td>Lê Văn C</td>
+                                            <td>levanc@email.com</td>
+                                            <td>Khách hàng</td>
+                                            <td><span class="status inactive">Tạm khóa</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-6">
+                    <div class="dashbox fade-in">
+                        <div class="dashbox__title">
+                            <h3>Quản lý khách sạn</h3>
+                            <div class="dashbox__wrap">
+                                <a href="#" class="refresh-btn" onclick="refreshHotelData()" title="Làm mới">
+                                    <i class="fas fa-sync-alt"></i>
+                                </a>
+                                <a class="dashbox__more" href="manage_hotels.html">Xem chi tiết</a>
+                            </div>
+                        </div>
+
+                        <div class="dashbox__content">
+                            <div class="table-container">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Tên khách sạn</th>
+                                            <th>Địa điểm</th>
+                                            <th>Đánh giá</th>
+                                            <th>Trạng thái</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>#H001</td>
+                                            <td>Grand Hotel</td>
+                                            <td>Hồ Chí Minh</td>
+                                            <td>⭐ 4.5</td>
+                                            <td><span class="status active">Hoạt động</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>#H002</td>
+                                            <td>Luxury Resort</td>
+                                            <td>Hà Nội</td>
+                                            <td>⭐ 4.8</td>
+                                            <td><span class="status active">Hoạt động</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>#H003</td>
+                                            <td>Beach Hotel</td>
+                                            <td>Đà Nẵng</td>
+                                            <td>⭐ 4.2</td>
+                                            <td><span class="status pending">Chờ duyệt</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đơn Đặt Phòng - やばい</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/bookings.css" />
+    <link rel="stylesheet" href="css/booking-modal.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <button class="close-sidebar-btn" onclick="document.querySelector('.sidebar').classList.remove('active'); document.querySelector('.sidebar-overlay').classList.remove('active');">
+        <i class="fas fa-times"></i>
+    </button>
+    <div class="logo">
+      <h2><i class="fas fa-crown"></i> やばい</h2>
+      <p>Quản Lý Khách Sạn</p>
+    </div>
+    <ul class="menu">
+      <li class="menu-item">
+        <a href="index.html" class="menu-link">
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="bookings.html" class="menu-link active">
+          <span>Đơn Đặt Phòng</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="rooms.html" class="menu-link">
+          <span>Quản Lý Phòng</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="pricing.html" class="menu-link">
+          <span>Giá & Khuyến Mãi</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="reviews.html" class="menu-link">
+          <span>Đánh Giá</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="reports.html" class="menu-link">
+          <span>Báo Cáo</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="transactions.html" class="menu-link">
+          <span>Giao Dịch</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="#" class="menu-link" onclick="toggleSubmenu(event, 'auth-submenu')">
+            <i class="fas fa-user-shield"></i>
+            <span>Quản lý phân quyền</span>
+            <i class="fas fa-chevron-down arrow"></i>
+        </a>
+        <ul id="auth-submenu" class="submenu">
+            <li>
+                <a href="roles.html" class="submenu-link">
+                    <i class="fas fa-users-cog"></i> Vai trò
+                </a>
+            </li>
+            <li>
+                <a href="permissions.html" class="submenu-link">
+                    <i class="fas fa-lock"></i> Phân quyền
+                </a>
+            </li>
+        </ul>
+    </li>
+      <li class="menu-item">
+        <a href="chat.html" class="menu-link"> <i class="fas fa-comments"></i>
+          <span>Tư vấn khách hàng</span>
+          <span class="badge-counter" style="background: #ff4757; color: white; font-size: 0.7rem; padding: 2px 6px; border-radius: 10px; margin-left: auto;">3</span>
+        </a>
+      </li>
+      <li class="menu-item">
+        <a href="settings.html" class="menu-link">
+          <i class="fas fa-cog"></i>
+          <span>Cài Đặt</span>
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+    <main class="main-content">
+      <div class="header">
+        <button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('active'); document.querySelector('.sidebar-overlay').classList.toggle('active');">
+      <i class="fas fa-bars"></i>
+    </button>
+        <h1 class="welcome">Đơn Đặt Phòng</h1>
+        <div class="user-info">
+          <div class="user-avatar">AD</div>
+          <div>
+            <div style="font-weight: 600; color: #333">Admin User</div>
+            <div style="font-size: 0.85rem; color: #666">Chủ khách sạn</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fas fa-calendar-check"></i>
+            Tất Cả Đơn Đặt Phòng
+          </h2>
+          <div style="display: flex; gap: 1rem">
+            <input type="text" placeholder="Tìm kiếm..." class="search-input" />
+            <select class="filter-select">
+              <option>Tất cả trạng thái</option>
+              <option>Đã xác nhận</option>
+              <option>Chờ xác nhận</option>
+              <option>Đã hủy</option>
+            </select>
+          </div>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Mã Đơn</th>
+              <th>Khách Hàng</th>
+              <th>Phòng</th>
+              <th>Check-in</th>
+              <th>Check-out</th>
+              <th>Số Khách</th>
+              <th>Tổng Tiền</th>
+              <th>Trạng Thái</th>
+              <th>Hành Động</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-label="Mã Đơn"><strong>BK12345</strong></td>
+              <td data-label="Khách Hàng">
+                <div>Nguyễn Văn A</div>
+                <div style="font-size: 0.85rem; color: #666">0912345678</div>
+              </td>
+              <td data-label="Phòng">Deluxe King - R101</td>
+              <td data-label="Check-in">15/10/2025</td>
+              <td data-label="Check-out">17/10/2025</td>
+              <td data-label="Số Khách">2 người</td>
+              <td data-label="Tổng Tiền"><strong>5.775.000đ</strong></td>
+              <td data-label="Trạng Thái">
+                <span class="status-badge status-booked">Đã xác nhận</span>
+              </td>
+              <td data-label="Hành Động">
+                <div class="action-btns">
+                  <button
+                    class="btn btn-sm btn-edit"
+                    onclick="showBookingDetail('BK12345')"
+                  >
+                    <i class="fas fa-eye"></i> Xem
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Mã Đơn"><strong>BK12346</strong></td>
+              <td data-label="Khách Hàng">
+                <div>Trần Thị B</div>
+                <div style="font-size: 0.85rem; color: #666">0987654321</div>
+              </td>
+              <td data-label="Phòng">Suite Executive - R102</td>
+              <td data-label="Check-in">16/10/2025</td>
+              <td data-label="Check-out">19/10/2025</td>
+              <td data-label="Số Khách">3 người</td>
+              <td data-label="Tổng Tiền"><strong>13.500.000đ</strong></td>
+              <td data-label="Trạng Thái">
+                <span class="status-badge status-pending">Chờ xác nhận</span>
+              </td>
+              <td data-label="Hành Động">
+                <div class="action-btns">
+                  <button
+                    class="btn btn-sm btn-edit"
+                    onclick="confirmBooking('BK12346', this)"
+                  >
+                    <i class="fas fa-check"></i> Xác nhận
+                  </button>
+
+                  <button
+                    class="btn btn-sm btn-danger"
+                    onclick="cancelBooking('BK12346', this)"
+                  >
+                    <i class="fas fa-times"></i> Hủy
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td data-label="Mã Đơn"><strong>BK12347</strong></td>
+              <td data-label="Khách Hàng">
+                <div>Lê Văn C</div>
+                <div style="font-size: 0.85rem; color: #666">0901234567</div>
+              </td>
+              <td data-label="Phòng">Presidential Suite - P001</td>
+              <td data-label="Check-in">18/10/2025</td>
+              <td data-label="Check-out">23/10/2025</td>
+              <td data-label="Số Khách">6 người</td>
+              <td data-label="Tổng Tiền"><strong>60.000.000đ</strong></td>
+              <td data-label="Trạng Thái">
+                <span class="status-badge status-booked">Đã xác nhận</span>
+              </td>
+              <td data-label="Hành Động">
+                <div class="action-btns">
+                  <button
+                    class="btn btn-sm btn-edit"
+                    onclick="showBookingDetail('BK12347')"
+                  >
+                    <i class="fas fa-eye"></i> Xem
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>BK12348</strong></td>
+              <td>
+                <div>Hoàng Văn E</div>
+                <div style="font-size: 0.85rem; color: #666">0934567890</div>
+              </td>
+              <td>Suite Executive - R104</td>
+              <td>22/10/2025</td>
+              <td>25/10/2025</td>
+              <td>4 người</td>
+              <td><strong>13.500.000đ</strong></td>
+              <td>
+                <span class="status-badge status-pending">Chờ xác nhận</span>
+              </td>
+              <td data-label="Hành Động">
+                <div class="action-btns">
+                  <button
+                    class="btn btn-sm btn-edit"
+                    onclick="confirmBooking('BK12346', this)"
+                  >
+                    <i class="fas fa-check"></i> Xác nhận
+                  </button>
+
+                  <button
+                    class="btn btn-sm btn-danger"
+                    onclick="cancelBooking('BK12346', this)"
+                  >
+                    <i class="fas fa-times"></i> Hủy
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    <!-- Booking Detail Modal -->
+    <div id="bookingModal" class="modal">
+      <div class="modal-overlay" onclick="closeModal()"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">
+            <i class="fas fa-file-invoice"></i>
+            Chi Tiết Đơn Đặt Phòng
+          </h2>
+          <button class="modal-close" onclick="closeModal()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <!-- Booking Info -->
+          <div class="detail-section">
+            <div class="detail-header">
+              <h3 class="detail-title">Thông Tin Đơn</h3>
+              <span id="modalStatus" class="status-badge status-booked"
+                >Đã xác nhận</span
+              >
+            </div>
+            <div class="detail-grid">
+              <div class="detail-item">
+                <span class="detail-label">Mã đơn:</span>
+                <span class="detail-value" id="modalBookingId">BK12345</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Ngày đặt:</span>
+                <span class="detail-value">10/10/2025 14:30</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Customer Info -->
+          <div class="detail-section">
+            <h3 class="detail-title">
+              <i class="fas fa-user"></i>
+              Thông Tin Khách Hàng
+            </h3>
+            <div class="detail-grid">
+              <div class="detail-item">
+                <span class="detail-label">Họ tên:</span>
+                <span class="detail-value" id="modalCustomerName"
+                  >Nguyễn Văn A</span
+                >
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Số điện thoại:</span>
+                <span class="detail-value" id="modalCustomerPhone"
+                  >0912345678</span
+                >
+              </div>
+              <div class="detail-item full-width">
+                <span class="detail-label">Email:</span>
+                <span class="detail-value">nguyenvana@email.com</span>
+              </div>
+              <div class="detail-item full-width">
+                <span class="detail-label">Địa chỉ:</span>
+                <span class="detail-value">123 Đường ABC, Quận 1, TP.HCM</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Room Info -->
+          <div class="detail-section">
+            <h3 class="detail-title">
+              <i class="fas fa-bed"></i>
+              Thông Tin Phòng
+            </h3>
+            <div class="detail-grid">
+              <div class="detail-item">
+                <span class="detail-label">Loại phòng:</span>
+                <span class="detail-value" id="modalRoomType">Deluxe King</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Số phòng:</span>
+                <span class="detail-value" id="modalRoomNumber">R101</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Check-in:</span>
+                <span class="detail-value" id="modalCheckin"
+                  >15/10/2025 14:00</span
+                >
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Check-out:</span>
+                <span class="detail-value" id="modalCheckout"
+                  >17/10/2025 12:00</span
+                >
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Số đêm:</span>
+                <span class="detail-value">2 đêm</span>
+              </div>
+              <div class="detail-item">
+                <span class="detail-label">Số khách:</span>
+                <span class="detail-value" id="modalGuests">2 người</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment Info -->
+          <div class="detail-section">
+            <h3 class="detail-title">
+              <i class="fas fa-money-bill-wave"></i>
+              Chi Tiết Thanh Toán
+            </h3>
+            <div class="payment-breakdown">
+              <div class="payment-row">
+                <span>Giá phòng (2 đêm x 2.500.000đ)</span>
+                <span>5.000.000đ</span>
+              </div>
+              <div class="payment-row">
+                <span>Phí dịch vụ (10%)</span>
+                <span>500.000đ</span>
+              </div>
+              <div class="payment-row">
+                <span>Thuế VAT (5%)</span>
+                <span>275.000đ</span>
+              </div>
+              <div class="payment-row payment-total">
+                <span><strong>Tổng cộng</strong></span>
+                <span><strong id="modalTotal">5.775.000đ</strong></span>
+              </div>
+              <div class="payment-row payment-status">
+                <span>Trạng thái thanh toán:</span>
+                <span class="status-badge status-booked">Đã thanh toán</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Special Requests -->
+          <div class="detail-section">
+            <h3 class="detail-title">
+              <i class="fas fa-comment-dots"></i>
+              Yêu Cầu Đặc Biệt
+            </h3>
+            <div class="special-requests">
+              <p>
+                Khách yêu cầu phòng view biển, giường cứng, không hút thuốc.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary" onclick="closeModal()">
+            <i class="fas fa-times"></i> Đóng
+          </button>
+          <button class="btn btn-primary" onclick="alert('In hóa đơn')">
+            <i class="fas fa-print"></i> In Hóa Đơn
+          </button>
+          <button class="btn btn-success" onclick="alert('Gửi email xác nhận')">
+            <i class="fas fa-envelope"></i> Gửi Email
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="js/role.js"></script>
+    <script src="js/booking.js"></script>
+  </body>
+</html>
