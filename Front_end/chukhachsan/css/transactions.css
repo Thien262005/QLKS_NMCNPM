@@ -115,7 +115,7 @@ table tr:hover td {
     background-color: #f8fafc;
 }
 
-/* Specific Styles for Report Tables (from Image) */
+/* Specific Styles for Report Tables */
 .report-table th {
     font-size: 0.8rem;
     text-transform: uppercase;
@@ -276,7 +276,7 @@ table tr:hover td {
 .progress-fill.danger { background: #ef4444; }
 .progress-fill.muted { background: #94a3b8; }
 
-/* --- Recent Activity Styles (Timeline-like) --- */
+/* --- Recent Activity Styles --- */
 .activity-list {
     display: flex;
     flex-direction: column;
@@ -547,9 +547,47 @@ table tr:hover td {
     gap: 12px;
 }
 
+.btn-primary {
+    background: linear-gradient(135deg,#6c757d, #bb6e37 ) !important; /* Ví dụ màu tím */
+    box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+}
+
 .btn-secondary {
     background: #fff;
     border: 1px solid #cbd5e1;
     color: #475569;
 }
 .btn-secondary:hover { background: #f1f5f9; border-color: #94a3b8; }
+
+/* 1. Header User Info */
+.header-user-name {
+    font-weight: 600;
+    color: #333;
+}
+
+.header-user-role {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* 2. Sidebar Badge Counter */
+.badge-counter {
+    background: #ff4757;
+    color: white;
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: auto;
+}
+
+/* 3. Utilities for Layout */
+.mb-0 {
+    margin-bottom: 0 !important;
+}
+
+/* 4. Modal Separator (Dashed Line) */
+.dashed-divider {
+    margin: 10px 0;
+    border: 0;
+    border-top: 1px dashed #ddd;
+}
